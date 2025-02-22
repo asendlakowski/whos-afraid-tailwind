@@ -1,6 +1,7 @@
 import React from "react";
 import Level from "./level";
 import Image from "next/image";
+import { levels } from "../leveltemplates/all_levels";
 
 
 const Home = () => {
@@ -43,12 +44,15 @@ const Home = () => {
         </div>
       </div>
       <div className="w-full flex flex-row overflow-x-scroll space-x-10 p-[80px]">
-        <Level level={1} artist="Owen Prendergast" name="Who's Afraid of Red, Yellow, and Blue?" image="logo.svg"></Level>
-        <Level level={1} artist="Owen Prendergast" name="Who's Afraid of Red, Yellow, and Blue?" image="logo.svg"></Level>
-        <Level level={1} artist="Owen Prendergast" name="Who's Afraid of Red, Yellow, and Blue?" image="logo.svg"></Level>
-        <Level level={1} artist="Owen Prendergast" name="Who's Afraid of Red, Yellow, and Blue?" image="logo.svg"></Level>
-        <Level level={1} artist="Owen Prendergast" name="Who's Afraid of Red, Yellow, and Blue?" image="logo.svg"></Level>
-        <Level level={1} artist="Owen Prendergast" name="Who's Afraid of Red, Yellow, and Blue?" image="logo.svg"></Level>
+        {levels.map((level, index) => (
+          <Level 
+            key={index}
+            level={index + 1} 
+            artist={level.artist} 
+            name={level.title} 
+            image={level.svg_name} 
+          />
+        ))}
       </div>
       
     </div>

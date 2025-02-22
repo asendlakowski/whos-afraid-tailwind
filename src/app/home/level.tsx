@@ -15,7 +15,7 @@ const Level = (props: LevelProps) => {
           Level {props.level}
         </div>
         <Image
-            className="m-2 w-full mx-auto drop-shadow-xl"
+            className="m-2 w-full max-h-[300px] mx-auto drop-shadow-xl"
             src={props.image}
             alt="level"
             height={50} 
