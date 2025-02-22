@@ -5,9 +5,8 @@ import Image from "next/image";
 
 const Home = () => {
   return (
-// bg-[#F5F4E2]
-<div className="bg-gradient-to-t from-white via-white via-75% to-[#CBCDFE] w-screen h-screen">
-    <nav className="">
+    <div className="bg-gradient-to-t from-white via-white via-75% to-[#CBCDFE] w-screen h-screen">
+      <nav className="">
         <div className="max-w-screen-xl flex flex-wrap items-center p-[30px] pl-[80px] ">
           <a href="/home" className="">
               <Image
