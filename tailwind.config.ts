@@ -13,10 +13,9 @@ export default {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        blinker: "var(--font-blinker)"
+        blinker: "var(--font-blinker)",
+        rb: ["Roboto Mono", "monospace"]
       }
-        rb: ["Roboto Mono", "monospace"],
-      },
     },
   },
   plugins: [],
