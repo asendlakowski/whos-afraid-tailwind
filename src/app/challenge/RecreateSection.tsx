@@ -1,6 +1,7 @@
 "use client"
 import React, { ReactNode, useState } from "react";
-
+import { level_name } from "../leveltemplates/level_type";
+import { level1 } from "../leveltemplates/all_levels";
 import Image from "next/image";
 
 interface RecreateSectionProps {
@@ -89,11 +90,9 @@ const RecreateSection = (props: RecreateSectionProps) => {
               <div className="font-bold">
                 Hint for You
               </div>
-              This is your hint!
+              {level1.hint}
             </div>
           )}
-
-          {/* Hint Button */}
           <button onClick={() => setShowHint(!showHint)}>
             <Image src="/questionbox.svg" alt="hint" width={38} height={38} />
           </button>
