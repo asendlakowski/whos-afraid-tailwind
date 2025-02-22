@@ -11,6 +11,8 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "primary-blue": "#0249FE",
+        "secondary-blue": "#5D8AA1",
       },
       fontFamily: {
         rb: ["Roboto Mono", "monospace"],

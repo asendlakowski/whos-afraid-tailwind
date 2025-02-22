@@ -41,7 +41,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
         <p className="text-white font-rb font-bold text-2xl opacity-75">
           RECREATE THIS PIECE
         </p>
-        <div className="bg-[#FFFFFF40] border-4 border-[#FFFFFF80] rounded-xl">
+        <div className="bg-[#FFFFFF40] border-4 border-[#FFFFFF80] rounded-xl drop-shadow-2xl">
           <div
             className={
               "w-[" +

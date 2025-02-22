@@ -2,6 +2,7 @@
 
 import React from "react";
 import Editor from "@monaco-editor/react";
+import { editor } from "monaco-editor";
 // import tailwindConfig from "../../../tailwind.config";
 // import { configureMonacoTailwindcss } from "monaco-tailwindcss";
 
@@ -13,21 +14,11 @@ interface MonacoEditorProps {
 const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
   const { code, setCode } = props;
 
-  // const tailwindcssData = {
-  //   theme: tailwindConfig.theme, // Extract theme data, can be extended for more
-  // };
-
-  // useEffect(() => {
-  //   // Initialize Monaco configuration for Tailwind CSS
-  //   configureMonacoTailwindcss(monaco, { tailwindConfig });
-  //   // monaco.languages.css.cssDefaults.setOptions({
-  //   //   data: {
-  //   //     dataProviders: {
-  //   //       tailwindcssData, // Use the imported tailwindcssData here
-  //   //     },
-  //   //   },
-  //   // });
-  // }, []);
+  const options: editor.IStandaloneEditorConstructionOptions = {
+    minimap: { enabled: false },
+    scrollbar: { vertical: "hidden" },
+    overviewRulerLanes: 0,
+  };
 
   return (
     <div className="flex flex-col items-center h-[95%] p-4">
@@ -35,6 +26,7 @@ const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
         language="html"
         theme="vs-light"
         value={code}
+        options={options}
         onChange={(value) => setCode(value || "")}
       />
     </div>
