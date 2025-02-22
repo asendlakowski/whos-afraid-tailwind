@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface LevelProps {
     name: string;
@@ -13,7 +14,14 @@ const Level = (props: LevelProps) => {
         <div className="font-blinker text-[#3239FB] flex justify-center text-3xl font-bold">
           Level {props.level}
         </div>
-        <img src={props.image} className="m-2 w-full mx-auto drop-shadow-xl" alt="painting" />
+        <Image
+            className="m-2 w-full mx-auto drop-shadow-xl"
+            src={props.image}
+            alt="level"
+            height={50} 
+            width={50}
+            priority
+        />
         <div className="font-blinker text-black flex justify-center text-sm">
           {props.name}
         </div>

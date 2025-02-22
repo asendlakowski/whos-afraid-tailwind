@@ -1,5 +1,6 @@
 import React from "react";
 import Level from "./level";
+import Image from "next/image";
 
 
 const Home = () => {
@@ -9,7 +10,14 @@ const Home = () => {
     <nav className="">
         <div className="max-w-screen-xl flex flex-wrap items-center p-[30px] pl-[80px] ">
           <a href="/home" className="">
-              <img src="logo.svg" className="h-15" alt="logo" />
+              <Image
+                className=""
+                src="/logo.svg"
+                alt="logo"
+                height={50}
+                width={50}
+                priority
+              />
           </a>
             <ul className="ml-20 flex flex-row space-x-8 font-blinker">
               <li>
