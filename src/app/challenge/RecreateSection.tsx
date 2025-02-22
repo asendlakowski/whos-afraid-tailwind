@@ -1,4 +1,6 @@
-import React, { ReactNode } from "react";
+"use client"
+import React, { ReactNode, useState } from "react";
+
 import Image from "next/image";
 
 interface RecreateSectionProps {
@@ -9,8 +11,10 @@ interface RecreateSectionProps {
   artist: string;
 }
 
+
 const RecreateSection = (props: RecreateSectionProps) => {
   const { paintingWidth, paintingHeight, title, artist, painting } = props;
+  const [showHint, setShowHint] = useState(false);
   return (
     <div className="flex flex-col justify-between items-center my-2">
       {/* Header Bar */}
@@ -79,7 +83,21 @@ const RecreateSection = (props: RecreateSectionProps) => {
       {/* Bottom Buttoms */}
       <div className="flex flex-row gap-5">
         <Image src="map.svg" alt="fun fact" width={38} height={38} />
-        <Image src="questionbox.svg" alt="hint" width={38} height={38} />
+        <div className="relative">
+          {showHint && (
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-[#CBCDFE] text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
+              <div className="font-bold">
+                Hint for You
+              </div>
+              This is your hint!
+            </div>
+          )}
+
+          {/* Hint Button */}
+          <button onClick={() => setShowHint(!showHint)}>
+            <Image src="/questionbox.svg" alt="hint" width={38} height={38} />
+          </button>
+        </div>
         <Image src="painticon.svg" alt="color swap" width={38} height={38} />
       </div>
     </div>
