@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Editor from "@monaco-editor/react";
 // import tailwindConfig from "../../../tailwind.config";
 // import { configureMonacoTailwindcss } from "monaco-tailwindcss";
