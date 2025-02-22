@@ -1,7 +1,11 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import RecreateSection from "./RecreateSection";
+import MonacoEditor from "../monacotest/monacoEditor";
 
 const Challenge = () => {
+  const [code, setCode] = useState<string>("Hello World");
+
   return (
     <div className="w-screen h-screen bg-[#5D8AA1]">
       <div className="grid grid-cols-[2fr_3fr_3fr] w-screen h-screen gap-5 pt-10 px-5 pb-5">
@@ -17,8 +21,36 @@ const Challenge = () => {
             </div>
           }
         />
-        <div className="bg-white w-full h-full opacity-75 rounded-xl" />
-        <div className="bg-white w-full h-full opacity-75 rounded-xl" />
+        <div className="bg-white w-full h-full opacity-75 rounded-xl">
+          <MonacoEditor code={code} setCode={setCode} />
+        </div>
+        <div className="bg-white w-full h-full opacity-75 rounded-xl">
+          <iframe
+            title="output"
+            className="bg-white w-full aspect-video"
+            srcDoc={`
+            <!DOCTYPE html>
+            <html lang="en">
+              <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <script src="https://cdn.tailwindcss.com"></script>
+                <style>
+                  body { margin: 0; padding: 0; }
+                </style>
+              </head>
+              <body>
+                ${code}
+              </body>
+            </html>
+  `} // Inject HTML into the iframe
+            style={{
+              width: "100%",
+              height: "100%",
+              border: "1px solid white",
+            }}
+          />
+        </div>
       </div>
     </div>
   );

@@ -15,12 +15,12 @@ const MonacoTest = () => {
       <pre className="bg-gray-800 text-white p-2 w-full max-w-2xl rounded-md">
         {code}
       </pre>
-      {/* <iframe
+      <iframe
         title="output"
         className="bg-white w-full aspect-video"
         srcDoc={code} // Inject HTML into the iframe
         style={{ width: "100%", height: "300px", border: "1px solid white" }}
-      /> */}
+      />
       <div
         className="p-4 mt-2 border border-gray-300 rounded-md"
         dangerouslySetInnerHTML={{ __html: code }}
