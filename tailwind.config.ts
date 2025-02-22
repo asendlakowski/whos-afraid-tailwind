@@ -15,6 +15,8 @@ export default {
       fontFamily: {
         blinker: "var(--font-blinker)"
       }
+        rb: ["Roboto Mono", "monospace"],
+      },
     },
   },
   plugins: [],
