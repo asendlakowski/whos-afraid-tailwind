@@ -27,16 +27,16 @@ export const level2: level_name = {
 export const level3: level_name = {
     title: "The Swan No. 17",
     artist: "Hilma Af Klint",
-    solution: `<div className="w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
-    <div className="w-[160px] h-[160px] bg-[#5684C1] rounded-full"></div>
-    <div className="absolute left-[23%] w-[80px] h-[160px] bg-[#DCD7CC] rounded-l-full"></div>
+    solution: `<div class="w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
+    <div class="w-[160px] h-[160px] bg-[#5684C1] rounded-full"></div>
+    <div class="absolute left-[23%] w-[80px] h-[160px] bg-[#DCD7CC] rounded-l-full"></div>
    
-    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] flex">
-      <div className="w-1/2 h-full bg-[#262427] rounded-l-full"></div>
-      <div className="w-1/2 h-full bg-[#D5B651] rounded-r-full"></div>
-       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] flex">
-       <div className="w-1/2 h-full bg-[#262427] rounded-l-full"></div>
-       <div className="w-1/2 h-full bg-[#D28C74] rounded-r-full"></div>
+    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] flex">
+      <div class="w-1/2 h-full bg-[#262427] rounded-l-full"></div>
+      <div class="w-1/2 h-full bg-[#D5B651] rounded-r-full"></div>
+       <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] flex">
+       <div class="w-1/2 h-full bg-[#262427] rounded-l-full"></div>
+       <div class="w-1/2 h-full bg-[#D28C74] rounded-r-full"></div>
       </div>
     </div>
   </div>`,

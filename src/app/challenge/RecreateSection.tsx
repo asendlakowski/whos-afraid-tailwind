@@ -1,6 +1,5 @@
 "use client"
 import React, { ReactNode, useState } from "react";
-import { level_name } from "../leveltemplates/level_type";
 import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
 
