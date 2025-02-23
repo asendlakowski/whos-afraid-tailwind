@@ -149,7 +149,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
                   style={{ backgroundColor: c }} // Use inline style to apply dynamic color
                 />
                 <span>
-                  {hexCopiedIndex === i ? <p className="font-blinker">Copied!</p> : <p className="font-blinker text-[#333333] font-rb font-semibold">{c}</p>}
+                  {hexCopiedIndex === i ? <p className="font-blinker text-[#333333] font-rb font-semibold">Copied!</p> : <p className="font-blinker text-[#333333] font-rb font-semibold">{c}</p>}
                 </span>
                 {/* <div className="w-[18px] h-[18px] bg-[${c}] rounded-sm" style={{ backgroundColor: c }} /> */}
                 {/* <p className="text-[#333333] font-rb font-semibold">{c}</p> */}
