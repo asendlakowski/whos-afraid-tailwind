@@ -18,6 +18,7 @@ const ChallengeContent = () => {
   const [isCompleteModalOpen, setIsCompleteModalOpen] =
     useState<boolean>(false);
   const [displayModelSoln, setDisplayModelSoln] = useState<boolean>(false);
+  const [recreateClosed, setRecreateClosed] = useState<boolean>(false);
 
   const onSubmitClicked = () => {
     setIsCompleteModalOpen(true);
@@ -32,6 +33,10 @@ const ChallengeContent = () => {
     setCode(current_level.start);
   }, [current_level]);
 
+  const toggleLeftWindow = () => {
+    setRecreateClosed(!recreateClosed);
+  };
+  
   useEffect(() => {
     if (displayModelSoln) {
       setCode(current_level.solution_str);
@@ -60,15 +65,37 @@ const ChallengeContent = () => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-[2fr_3fr_3fr] w-screen h-screen gap-5 pt-10 px-5 pb-5">
-          <RecreateSection
-            paintingWidth={current_level.w}
-            paintingHeight={current_level.h}
-            title={current_level.title}
-            artist={current_level.artist}
-            painting={current_level.solution}
-            colors={current_level.colors}
-          />
+        <div
+          className={`grid w-screen h-screen gap-5 pt-10 px-5 pb-5 ease-in-out ${
+            recreateClosed
+              ? "grid-cols-[50px_minmax(0,3fr)_minmax(0,3fr)]"
+              : "grid-cols-[minmax(0,2fr)_minmax(0,3fr)_minmax(0,3fr)]"
+          }`}
+        >
+          {recreateClosed ? (
+            <button
+              onClick={toggleLeftWindow}
+              className="flex justify-center items-center bg-[#FFFFFFB0] w-full h-full rounded-xl"
+            >
+              <Image
+                src="caret.svg"
+                alt="reopen window button"
+                width={24}
+                height={24}
+                className="fill-white stroke-white"
+              />
+            </button>
+          ) : (
+            <RecreateSection
+              paintingWidth={current_level.w}
+              paintingHeight={current_level.h}
+              title={current_level.title}
+              artist={current_level.artist}
+              painting={current_level.solution}
+              colors={current_level.colors}
+              toggleLeftWindow={toggleLeftWindow}
+            />
+          )}
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
             <div className="flex justify-end space-x-4 mt-4 mr-4">
               <button
