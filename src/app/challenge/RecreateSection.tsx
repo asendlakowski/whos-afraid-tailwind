@@ -27,7 +27,6 @@ const RecreateSection = (props: RecreateSectionProps) => {
     toggleLeftWindow,
   } = props;
   const [showHint, setShowHint] = useState(false);
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [originalImage, setOriginalImage] = useState(false);
   const [hexCopiedIndex, hexSetCopiedIndex] = useState<number | null>(null);
 
