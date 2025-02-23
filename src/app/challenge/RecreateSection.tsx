@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode, useState } from "react";
-import { levels } from "../leveltemplates/all_levels";
+// import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
 import Hamburger from "./Hamburger";
 
@@ -11,6 +11,8 @@ interface RecreateSectionProps {
   title: string;
   artist: string;
   colors: string[];
+  hint: string;
+  description: string;
   setCurrBackground: (color: string) => void;
   svg_name: string;
   toggleLeftWindow: () => void;
@@ -25,6 +27,8 @@ const RecreateSection = (props: RecreateSectionProps) => {
     artist,
     painting,
     colors,
+    hint,
+    description,
     toggleLeftWindow,
     infoURL,
     setCurrBackground,
@@ -162,8 +166,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
         </div>
 
         <p className="text-white font-rb font-bold text-sm opacity-75 text-left max-w-[320px] my-4">
-          This is a great hint that will give you some guidance on how to solve
-          this problem using cool tailwind methods yippeeeeeeeeeee
+          {description}
         </p>
       </div>
 
@@ -189,7 +192,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
           {showHint && (
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-primary-purple text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
               <div className="font-bold">Hint for You</div>
-              {levels[0].hint}
+              <p className="max-w-[300px]">{hint}</p>
             </div>
           )}
           <button onClick={() => setShowHint(!showHint)}>
