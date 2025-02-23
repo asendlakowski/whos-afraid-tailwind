@@ -6,7 +6,12 @@ import YourCodeSection from "./YourCodeSection";
 import Image from "next/image";
 import { levels } from "../leveltemplates/all_levels";
 import { useSearchParams } from "next/navigation";
+
+import type { Box } from "@/utils/BoxType";
+import { get_box_data, compute_diff } from "@/utils/BoxUtils";
+
 import Link from "next/link";
+import Hamburger from "./Hamburger";
 
 const ChallengeContent = () => {
   const searchParams = useSearchParams();
@@ -19,10 +24,66 @@ const ChallengeContent = () => {
     useState<boolean>(false);
   const [displayModelSoln, setDisplayModelSoln] = useState<boolean>(false);
   const [currBackground, setCurrBackground] = useState("#5D8AA1");
-
-  const onSubmitClicked = () => {
+  const [recreateClosed, setRecreateClosed] = useState<boolean>(false);
+  
+  const onClickHandlePopup = () => {
     setIsCompleteModalOpen(true);
     console.log("printing to not error", displayModelSoln);
+  };
+
+  const onSubmitClicked = () => {
+    const iframe: HTMLIFrameElement = document.getElementById(
+      "user_code"
+    ) as HTMLIFrameElement;
+
+    if (!iframe) {
+      throw new Error("Could not get user code iframe");
+    }
+
+    const user_root =
+      iframe.contentDocument!.getElementsByClassName("canvas")[0];
+
+    /* mark the user code with "user " classname extension
+     * Made it a nested function to avoid passing in more params
+     */
+    const recurse_through_tree = (
+      root: Element,
+      canvas: Element,
+      box_list: Box[]
+    ) => {
+      if (!root.children) {
+        return;
+      }
+
+      const rootClassName = root.className;
+      if (rootClassName) {
+        if (rootClassName.includes("bg-")) {
+          const box = get_box_data(root, canvas);
+          box_list.push(box);
+        }
+      }
+
+      for (let i = 0; i < root.children.length; i++) {
+        const curr_elem = root.children[i];
+        recurse_through_tree(curr_elem, canvas, box_list);
+      }
+    };
+
+    const user_boxes: Box[] = [];
+    recurse_through_tree(user_root, user_root, user_boxes);
+
+    const soln_root = document.getElementsByClassName("soln_canvas");
+
+    if (soln_root.length != 1) {
+      console.log(soln_root);
+      throw new Error("There is more than one canvas element");
+    }
+
+    const soln_boxes: Box[] = [];
+    recurse_through_tree(soln_root[0], soln_root[0], soln_boxes);
+
+    const diff = compute_diff(user_boxes, soln_boxes);
+    console.log("diff: ", diff);
   };
 
   useEffect(() => {
@@ -33,6 +94,10 @@ const ChallengeContent = () => {
     setCode(current_level.start);
   }, [current_level]);
 
+  const toggleLeftWindow = () => {
+    setRecreateClosed(!recreateClosed);
+  };
+
   useEffect(() => {
     if (displayModelSoln) {
       setCode(current_level.solution_str);
@@ -41,9 +106,9 @@ const ChallengeContent = () => {
   }, [displayModelSoln]);
 
   return (
-    <div className="w-screen h-screen" style={{background: currBackground}}>
+    <div className="w-screen h-screen overflow-hidden flex flex-col" style={{background: currBackground}}>
       {fullscreen ? (
-        <div className="grid grid-cols-1 w-screen h-screen gap-5 pt-5 px-5 pb-5">
+        <div className="grid grid-cols-1 w-screen h-full gap-5 pt-5 px-5 pb-5">
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
             <div className="flex justify-end space-x-4 mt-4 mr-4">
               <button
@@ -61,16 +126,49 @@ const ChallengeContent = () => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-[2fr_3fr_3fr] w-screen h-screen gap-5 pt-10 px-5 pb-5">
-          <RecreateSection
-            paintingWidth={current_level.w}
-            paintingHeight={current_level.h}
-            title={current_level.title}
-            artist={current_level.artist}
-            painting={current_level.solution}
-            colors={current_level.colors}
-            setCurrBackground = {setCurrBackground}
-          />
+        <div
+          className={`grid w-screen h-full gap-5 pt-5 px-5 pb-5 ease-in-out ${
+            recreateClosed
+              ? "grid-cols-[50px_minmax(0,3fr)_minmax(0,3fr)]"
+              : "grid-cols-[minmax(0,2fr)_minmax(0,3fr)_minmax(0,3fr)]"
+          }`}
+        >
+          {recreateClosed ? (
+            <div className="flex flex-col justify-start items-center w-full h-full gap-2">
+              <Hamburger />
+              <button
+                onClick={toggleLeftWindow}
+                className="inline-flex justify-center w-full rounded-md px-3 py-1 text-white hover:bg-[#D7E1E8] hover:text-secondary-blue"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                  className="bi bi-arrow-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <RecreateSection
+              paintingWidth={current_level.w}
+              paintingHeight={current_level.h}
+              title={current_level.title}
+              artist={current_level.artist}
+              painting={current_level.solution}
+              colors={current_level.colors}
+              svg_name={current_level.svg_name}
+              toggleLeftWindow={toggleLeftWindow}
+              infoURL={current_level.infolink}
+              setCurrBackground = {setCurrBackground}
+            />
+          )}
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
             <div className="flex justify-end space-x-4 mt-4 mr-4">
               <button
@@ -90,6 +188,7 @@ const ChallengeContent = () => {
             frame={
               <iframe
                 title="output"
+                id="user_code"
                 className={`bg-black w-[${current_level.w}px] h-[${current_level.h}px] m-2`}
                 srcDoc={`
                 <!DOCTYPE html>
@@ -109,8 +208,16 @@ const ChallengeContent = () => {
                 `}
               />
             }
-            onSubmitClicked={onSubmitClicked}
+            funfact={current_level.funfact}
+            onSubmitClicked={onClickHandlePopup}
           />
+
+          <button
+            className="absolute bottom-10 right-48 rounded-md h-auto py-2 px-4 w-auto bg-black text-white"
+            onClick={onSubmitClicked}
+          >
+            Submit
+          </button>
         </div>
       )}
       {isCompleteModalOpen && (

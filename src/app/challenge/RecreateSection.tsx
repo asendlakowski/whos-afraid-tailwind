@@ -2,8 +2,9 @@
 import React, { ReactNode, useState } from "react";
 import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
+// import Link from "next/link";
+import Hamburger from "./Hamburger";
 import Link from "next/link";
-
 
 interface RecreateSectionProps {
   paintingWidth: number;
@@ -13,15 +14,27 @@ interface RecreateSectionProps {
   artist: string;
   colors: string[];
   setCurrBackground: (color: string) => void;
+  svg_name: string;
+  toggleLeftWindow: () => void;
+  infoURL: string;
 }
 
 const RecreateSection = (props: RecreateSectionProps) => {
-  const { paintingWidth, paintingHeight, title, artist, painting, colors, setCurrBackground } =
-    props;
+  const {
+    paintingWidth,
+    paintingHeight,
+    title,
+    artist,
+    painting,
+    colors,
+    toggleLeftWindow,
+    infoURL,
+    setCurrBackground
+  } = props;
   const [showHint, setShowHint] = useState(false);
+  const [originalImage, setOriginalImage] = useState(false);
   const [showBackgroundColors, setShowBackgroundColors] = useState(false);
   const colorArray = ["#CDD77C", "#315724", "#010101", "#5D8AA1", "#3239FB", "#9E779D", "#FF5260", "#FE868D", "#FF999A", "#BEBEBE"];
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [hexCopiedIndex, hexSetCopiedIndex] = useState<number | null>(null);
 
   const handleCopy = async (textToCopy: string, index: number) => {
@@ -31,97 +44,31 @@ const RecreateSection = (props: RecreateSectionProps) => {
       // display copied! for 2 sec
       setTimeout(() => hexSetCopiedIndex(null), 2000);
     } catch (err) {
-      console.error('Failed to copy text: ', err);
+      console.error("Failed to copy text: ", err);
     }
   };
-  
+
   return (
-    <div className="flex flex-col justify-between items-center my-2">
+    <div className="flex flex-col justify-between items-center my-2 overflow-y-scroll">
       {/* Header Bar */}
-      <div className="w-full flex flex-row justify-between items-center">
+      <div className="w-full flex flex-row justify-between items-center sticky top-0">
         <div className="flex flex-row gap-3 items-center">
           <div className="relative inline-block text-left">
-            {/* Hamburger Icon Button */}
-            <button
-              onClick={() => setMenuIsOpen(!menuIsOpen)}
-              className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-[#5D8AA1] text-sm font-medium text-[#D7E1E8] hover:bg-[#D7E1E8] hover:text-[#5D8AA1] focus:outline-none"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {menuIsOpen ? (
-                  // X icon when menu is open
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  // Hamburger icon when menu is closed
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-
-            {/* Dropdown Menu */}
-            {menuIsOpen && (
-              <div className="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-[#D7E1E8] text-[#5D8AA1] z-10">
-                <div className="py-1">
-                  <Link
-                    href={{
-                      pathname: "/challenge",
-                      query: { level: String(0) },
-                    }}
-                    className="block px-4 py-3 text-med text-gray-700 hover:px-4 font-blinker hover:font-bold"
-                    onClick={() => setMenuIsOpen(false)}
-                  >
-                    Level 1
-                  </Link>
-                  <Link
-                    href={{
-                      pathname: "/challenge",
-                      query: { level: String(1) },
-                    }}
-                    className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
-                    onClick={() => setMenuIsOpen(false)}
-                  >
-                    Level 2
-                  </Link>
-                  <Link
-                    href={{
-                      pathname: "/challenge",
-                      query: { level: String(2) },
-                    }}
-                    className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
-                    onClick={() => setMenuIsOpen(false)}
-                  >
-                    Level 3
-                  </Link>
-                </div>
-              </div>
-            )}
+            <Hamburger />
           </div>
           <p className="text-white font-rb font-semibold text-lg opacity-75">
             LEVELS
           </p>
         </div>
-        <Image
-          src="xicon.svg"
-          alt="x icon"
-          width={30}
-          height={30}
-          className="opacity-75"
-        />
+        <button onClick={toggleLeftWindow}>
+          <Image
+            src="xicon.svg"
+            alt="x icon"
+            width={30}
+            height={30}
+            className="opacity-75"
+          />
+        </button>
       </div>
 
       {/* Rest of the section */}
@@ -129,19 +76,41 @@ const RecreateSection = (props: RecreateSectionProps) => {
         <p className="text-white font-rb font-bold text-2xl opacity-75">
           RECREATE THIS PIECE
         </p>
-        <div className="bg-[#FFFFFF40] border-4 border-[#FFFFFF80] rounded-xl">
+
+        <div className="bg-[#FFFFFF40] border-4 border-[#FFFFFF80] rounded-xl relative">
+          <button
+            className="absolute top-2 right-2 bg-white/25 px-3 py-1 text-sm rounded-md shadow-md z-10 m-2"
+            onClick={() => setOriginalImage(!originalImage)}
+          >
+            {originalImage ? "See solution" : "See original image"}
+            <Image
+              className="inline ml-2"
+              src="eye.svg"
+              alt="original"
+              height={20}
+              width={20}
+              priority
+            />
+          </button>
+
           <div
-            className={
-              "w-[" +
-              paintingWidth +
-              "px] h-[" +
-              paintingHeight +
-              "px] bg-black m-2"
-            }
+            className={`relative w-[${paintingWidth}px] h-[${paintingHeight}px] bg-black m-2`}
           >
             {painting}
+
+            {originalImage && (
+              <Image
+                className="absolute top-0 left-0 w-full h-full object-cover"
+                src={props.svg_name}
+                alt="original"
+                height={50}
+                width={50}
+                priority
+              />
+            )}
           </div>
         </div>
+
         <div className="flex flex-col gap-2">
           <p className="text-white font-rb font-bold text-lg opacity-75 text-center max-w-[320px]">
             {'"' + title + '"'}
@@ -156,24 +125,25 @@ const RecreateSection = (props: RecreateSectionProps) => {
           {colors.map((c, i) => {
             return (
               <button key={i} onClick={() => handleCopy(c, i)}>
-              <div
-                key={i}
-                className="w-full bg-[#ffffff60] rounded-md p-1 flex flex-row gap-1 justify-center items-center"
-              >
-                <span
-                  className="w-[18px] h-[18px] rounded-sm"
-                  style={{ backgroundColor: c }} // Use inline style to apply dynamic color
-                />
-                <span>
-                  {hexCopiedIndex === i ? <p className="font-blinker text-[#333333] font-rb font-semibold">Copied!</p> : <p className="font-blinker text-[#333333] font-rb font-semibold">{c}</p>}
-                </span>
-              </div>
+                <div
+                  key={i}
+                  className="w-full bg-[#ffffff60] rounded-md p-1 flex flex-row gap-1 justify-center items-center"
+                >
+                  <span
+                    className="w-[18px] h-[18px] rounded-sm"
+                    style={{ backgroundColor: c }} // Use inline style to apply dynamic color
+                  />
+                  <span>
+                    {hexCopiedIndex === i ? <p className="font-blinker text-[#333333] font-rb font-semibold">Copied!</p> : <p className="font-blinker text-[#333333] font-rb font-semibold">{c}</p>}
+
+                  </span>
+                </div>
               </button>
             );
           })}
         </div>
 
-        <p className="text-white font-rb font-bold text-sm opacity-75 text-left max-w-[320px]">
+        <p className="text-white font-rb font-bold text-sm opacity-75 text-left max-w-[320px] my-4">
           This is a great hint that will give you some guidance on how to solve
           this problem using cool tailwind methods yippeeeeeeeeeee
         </p>
@@ -181,10 +151,24 @@ const RecreateSection = (props: RecreateSectionProps) => {
 
       {/* Bottom Buttoms */}
       <div className="flex flex-row gap-5">
-        <Image src="map.svg" alt="fun fact" width={38} height={38} />
+        <Link
+          href={infoURL}
+          className="flex justify-center items-center bg-[#ffffff60] w-[38px] h-[38px] rounded-lg border-[1.5px] border-white"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="white"
+            className="bi bi-info-circle-fill "
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2" />
+          </svg>
+        </Link>
         <div className="relative">
           {showHint && (
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-[#CBCDFE] text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-primary-purple text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
               <div className="font-bold">Hint for You</div>
               {levels[0].hint}
             </div>

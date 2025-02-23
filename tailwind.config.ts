@@ -13,6 +13,7 @@ export default {
         foreground: "var(--foreground)",
         "primary-blue": "#0249FE",
         "secondary-blue": "#5D8AA1",
+        "primary-purple": "#CBCDFE",
       },
       fontFamily: {
         blinker: "var(--font-blinker)",

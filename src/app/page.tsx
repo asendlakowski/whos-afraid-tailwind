@@ -17,7 +17,6 @@ type Box = {
   blue: number;
 };
 
-/* TODO: FIX THIS ANY TYPE ON THIS FUNCTION SIGNATURE */
 const get_box_data = (html_elem: Element, canvas: Element) => {
   const computed_styles = window.getComputedStyle(html_elem);
 

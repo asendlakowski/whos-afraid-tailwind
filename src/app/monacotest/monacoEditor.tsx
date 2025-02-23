@@ -21,13 +21,17 @@ const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
   };
 
   return (
-    <div className="flex flex-col items-center h-[95%] p-4">
+    <div className="flex flex-col items-center h-[30%] p-4">
       <Editor
         language="html"
         theme="vs-light"
         value={code}
         options={options}
         onChange={(value) => setCode(value || "")}
+        // onMount={(editorInstance) => {
+        //   // Trigger the format document action when the editor is mounted.
+        //   editorInstance.getAction("editor.action.formatDocument")?.run();
+        // }}
       />
     </div>
   );
