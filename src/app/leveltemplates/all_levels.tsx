@@ -5,13 +5,12 @@ export const level1: level_name = {
   artist: "Barnett Newman",
   start: `<div class="canvas w-screen h-screen bg-[#cd0000]">\n\t<div/>\n\t<div/>\n</div>`,
   solution: (
-
     <div className="soln_canvas w-[300px] h-[420px] bg-[#cd0000] flex flex-row justify-between">
       <div className="w-3 h-full bg-[#02007f]"></div>
       <div className="w-1 h-full bg-[#fec800]"></div>
     </div>
   ),
-  solution_str: `<div class="w-[300px] h-[420px] bg-[#cd0000] flex flex-row justify-between">
+  solution_str: `<div class="canvas w-screen h-screen bg-[#cd0000] flex flex-row justify-between">
   <div class="w-3 h-full bg-[#02007f]"></div>
   <div class="w-1 h-full bg-[#fec800]"></div>
 </div>`,
@@ -26,37 +25,83 @@ export const level1: level_name = {
 };
 
 export const level2: level_name = {
-  title: "Unnamed",
-  artist: "Mika Tajima",
-  start: `<div class="w-screen h-screen"/>`,
+  title: "Composition",
+  artist: "Piet Mondrian",
+  start: '<div class="canvas w-screen h-screen bg-white">\n</div>',
   solution: (
-    <div className="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>
+    <div className="soln_canvas w-[300px] h-[300px] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
+      <div className="bg-[#b6262b]" />
+      <div className="bg-[#dee1e8]" />
+      <div className="bg-[#dee1e8]" />
+      <div className="bg-black grid grid-cols-[6fr_3fr_0.5fr] grid-rows-[4fr_5fr_0.5fr] gap-2">
+        <div className="bg-[#dee1e8] col-span-2 row-span-2" />
+        <div className="bg-[#203385]" />
+        <div className="bg-[#dee1e8] row-span-2" />
+        <div className="bg-[#d9a948]" />
+        <div className="bg-black" />
+      </div>
+    </div>
   ),
-  solution_str: `<div class="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>`,
-  svg_name: "/paintings/mikatajima.png",
+  solution_str: `<canvas div class="w-screen h-screen bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
+    <div class="bg-[#b6262b]"></div>
+    <div class="bg-[#dee1e8]"></div>
+    <div class="bg-[#dee1e8]"></div>
+    <div class="bg-black grid grid-cols-[6fr_3fr_0.5fr] grid-rows-[4fr_5fr_0.5fr] gap-2">
+        <div class="bg-[#dee1e8] col-span-2 row-span-2"></div>
+        <div class="bg-[#203385]"></div>
+        <div class="bg-[#dee1e8] row-span-2"></div>
+        <div class="bg-[#d9a948]"></div>
+        <div class="bg-black"></div>
+    </div>
+</div>`,
+  svg_name: "/paintings/mondrian.svg",
   funfact:
-    'The artist, Mika Tajima, sometimes title their works in a deliberately open or minimal way (hence "Unnamed"), allowing the audience to enjoy the painting for what it is without being swayed by the title.',
+    'Piet Mondrian\'s "Composition" works are a hallmark of his Neoplasticism style, where he used only primary colors, black, white, and grey arranged in a strict grid of vertical and horizontal lines. He believed that these simplified forms could reveal the universal order and balance of the cosmos, a revolutionary idea that continues to influence modern art and design',
   hint: "string",
-  colors: [
-    "#0B111B",
-    "#00275A",
-    "#01285C",
-    "#01113D",
-    "#002759",
-    "#01242F",
-    "#516F6B",
-  ],
+  colors: ["#dee1e8", "#b6262b", "#203385", "#d9a948"],
   w: 300,
-  h: 420,
-  infolink: "https://mikatajima.com/",
+  h: 300,
+  infolink: "https://www.piet-mondrian.org/",
 };
 
 export const level3: level_name = {
+  title: "The Mad Hatter",
+  artist: "Tarrant Hightopp",
+  start: '<div class="canvas w-screen h-screen">\n</div>',
+  solution: (
+    <div className="soln_canvas w-[300px] h-[300px] bg-[#1e3a8a] relative flex items-center justify-center">
+      <div className="flex flex-col items-center">
+        <div className="relative w-40 h-28 bg-[#000000] rounded-t-xl rounded-b-sm overflow-hidden">
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-[#facc15]"></div>
+        </div>
+        <div className="w-56 h-6 bg-black rounded-full -mt-2"></div>
+      </div>
+    </div>
+  ),
+  solution_str: `<div class="canvas w-screen h-screen bg-blue-900 relative flex items-center justify-center">
+  <div class="flex flex-col items-center">
+    <div class="relative w-40 h-28 bg-black rounded-t-xl rounded-b-sm overflow-hidden">
+      <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-[#facc15]"></div>
+    </div>
+    <div class="w-56 h-6 bg-black rounded-full -mt-2"></div>
+  </div>
+</div>`,
+  svg_name: "/paintings/Mad_Hatter.svg",
+  funfact:
+    'Tarrant Hightopp, otherwise known as the Mad Hatter, is famously known for his whimsical nature and absurd riddles. During the 2010 movie rendition of "Alice in Wonderland", his role was acted out by none other than Johnny Depp',
+  hint: "string",
+  colors: ["#000000", "#1e3a8a", "#facc15"],
+  w: 300,
+  h: 300,
+  infolink: "https://www.alice-in-wonderland.net/",
+};
+
+export const level4: level_name = {
   title: "The Swan No. 17",
   artist: "Hilma Af Klint",
-  start: "",
+  start: '<div class="canvas w-screen h-screen">\n</div>',
   solution: (
-    <div className="w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
+    <div className="soln_canvas w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
       <div className="w-[160px] h-[160px] bg-[#5684C1] rounded-full"></div>
       <div className="absolute left-[23%] w-[80px] h-[160px] bg-[#DCD7CC] rounded-l-full"></div>
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] flex">
@@ -69,7 +114,7 @@ export const level3: level_name = {
       </div>
     </div>
   ),
-  solution_str: `<div class="w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
+  solution_str: `<div class="canvas w-screen h-screen bg-[#A95139] relative flex items-center justify-center">
   <div class="w-[160px] h-[160px] bg-[#5684C1] rounded-full"></div>
   <div class="absolute left-[23%] w-[80px] h-[160px] bg-[#DCD7CC] rounded-l-full"></div>
   <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] flex">
@@ -91,75 +136,30 @@ export const level3: level_name = {
   infolink: "https://hilmaafklint.se/",
 };
 
-export const level4: level_name = {
-  title: "The Mad Hatter",
-  artist: "Tarrant Hightopp",
-  start: "",
-  solution: (
-    <div className="w-[300px] h-[300px] bg-[#1e3a8a] relative flex items-center justify-center">
-      <div className="flex flex-col items-center">
-        <div className="relative w-40 h-28 bg-[#000000] rounded-t-xl rounded-b-sm overflow-hidden">
-          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-[#facc15]"></div>
-        </div>
-        <div className="w-56 h-6 bg-black rounded-full -mt-2"></div>
-      </div>
-    </div>
-  ),
-  solution_str: `<div class="w-screen h-screen bg-blue-900 relative flex items-center justify-center">
-  <div class="flex flex-col items-center">
-    <div class="relative w-40 h-28 bg-black rounded-t-xl rounded-b-sm overflow-hidden">
-      <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-[#facc15]"></div>
-    </div>
-    <div class="w-56 h-6 bg-black rounded-full -mt-2"></div>
-  </div>
-</div>`,
-  svg_name: "/paintings/Mad_Hatter.svg",
-  funfact:
-    'Tarrant Hightopp, otherwise known as the Mad Hatter, is famously known for his whimsical nature and absurd riddles. During the 2010 movie rendition of "Alice in Wonderland", his role was acted out by none other than Johnny Depp',
-  hint: "string",
-  colors: ["#000000", "#1e3a8a", "#facc15"],
-  w: 300,
-  h: 300,
-  infolink: "https://www.alice-in-wonderland.net/",
-};
-
 export const level5: level_name = {
-  title: "Composition",
-  artist: "Piet Mondrian",
-  start: "",
+  title: "Unnamed",
+  artist: "Mika Tajima",
+  start: `<div class="canvas w-screen h-screen">\n</div>`,
   solution: (
-    <div className="w-[300] h-[300] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
-      <div className="bg-[#b6262b]" />
-      <div className="bg-[#dee1e8]" />
-      <div className="bg-[#dee1e8]" />
-      <div className="bg-black grid grid-cols-[6fr_3fr_0.5fr] grid-rows-[4fr_5fr_0.5fr] gap-2">
-        <div className="bg-[#dee1e8] col-span-2 row-span-2" />
-        <div className="bg-[#203385]" />
-        <div className="bg-[#dee1e8] row-span-2" />
-        <div className="bg-[#d9a948]" />
-        <div className="bg-black" />
-      </div>
-    </div>
+    <div className="soln_canvas w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>
   ),
-  solution_str: `<div class="w-[300px] h-[300px] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
-    <div class="bg-[#b6262b]"></div>
-    <div class="bg-[#dee1e8]"></div>
-    <div class="bg-[#dee1e8]"></div>
-    <div class="bg-black grid grid-cols-[6fr_3fr_0.5fr] grid-rows-[4fr_5fr_0.5fr] gap-2">
-        <div class="bg-[#dee1e8] col-span-2 row-span-2"></div>
-        <div class="bg-[#203385]"></div>
-        <div class="bg-[#dee1e8] row-span-2"></div>
-        <div class="bg-[#d9a948]"></div>
-        <div class="bg-black"></div>
-    </div>
-</div>`,
-  svg_name: "/paintings/mondrian.svg",
-  funfact: 'Piet Mondrian\'s "Composition" works are a hallmark of his Neoplasticism style, where he used only primary colors, black, white, and grey arranged in a strict grid of vertical and horizontal lines. He believed that these simplified forms could reveal the universal order and balance of the cosmos, a revolutionary idea that continues to influence modern art and design',
+  solution_str: `<div class="canvas w-screen h-screen bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>`,
+  svg_name: "/paintings/mikatajima.png",
+  funfact:
+    'The artist, Mika Tajima, sometimes title their works in a deliberately open or minimal way (hence "Unnamed"), allowing the audience to enjoy the painting for what it is without being swayed by the title.',
   hint: "string",
-  colors: ["#dee1e8", "#b6262b", "#203385", "#d9a948"],
+  colors: [
+    "#0B111B",
+    "#00275A",
+    "#01285C",
+    "#01113D",
+    "#002759",
+    "#01242F",
+    "#516F6B",
+  ],
   w: 300,
-  h: 300,
-  infolink: "https://www.piet-mondrian.org/",
+  h: 420,
+  infolink: "https://mikatajima.com/",
 };
 
 export const levels: level_name[] = [level1, level2, level3, level4, level5];
