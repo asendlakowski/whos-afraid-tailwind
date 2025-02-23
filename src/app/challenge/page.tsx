@@ -32,6 +32,11 @@ const ChallengeContent = () => {
     console.log("printing to not error", displayModelSoln);
   };
 
+  const showSolutionCode = () => {
+    setDisplayModelSoln(true);
+    setIsCompleteModalOpen(false);
+  };
+
   const onSubmitClicked = () => {
     const iframe: HTMLIFrameElement = document.getElementById(
       "user_code"
@@ -224,6 +229,7 @@ const ChallengeContent = () => {
             funfact={current_level.funfact}
             onSubmitClicked={onSubmitClicked}
             percentAccurate={percentAcc}
+            showSolution={showSolutionCode}
           />
 
           {/* <button
@@ -263,17 +269,14 @@ const ChallengeContent = () => {
               priority
             />
 
-            <p className="text-primary-blue text-xs font-blinker">
+            {/* <p className="text-primary-blue text-xs font-blinker">
               You were so so close!
-            </p>
+            </p> */}
             <div className="text-primary-blue text-xs font-blinker">
               Want to see our{" "}
               <span
                 className="underline cursor-pointer"
-                onClick={() => {
-                  setDisplayModelSoln(true);
-                  setIsCompleteModalOpen(false);
-                }}
+                onClick={showSolutionCode}
               >
                 model solution?
               </span>
