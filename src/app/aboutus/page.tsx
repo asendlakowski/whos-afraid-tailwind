@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { levels } from "../leveltemplates/all_levels";
 
 const Home = () => {
   return (
