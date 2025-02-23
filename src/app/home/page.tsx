@@ -30,7 +30,7 @@ const Home = () => {
                 <a href="#" className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]">Community</a>
               </li>
               <li>
-                <a href="#" className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]">About Us</a>
+                <a href="../aboutus" className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]">About Us</a>
               </li>
             </ul>
         </div>

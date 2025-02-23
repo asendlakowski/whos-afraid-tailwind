@@ -8,6 +8,7 @@ const Hamburger = () => {
     { name: "Level 1", data: "0" },
     { name: "Level 2", data: "1" },
     { name: "Level 3", data: "2" },
+    { name: "Level 4", data: "3" },
   ];
 
   return (

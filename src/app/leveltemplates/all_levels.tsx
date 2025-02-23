@@ -31,7 +31,15 @@ export const level2: level_name = {
   solution_str: `<div class="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>`,
   svg_name: "/paintings/mikatajima.png",
   hint: "string",
-  colors: ["#0B111B","#00275A","#01285C","#01113D","#002759","#01242F","#516F6B"],
+  colors: [
+    "#0B111B",
+    "#00275A",
+    "#01285C",
+    "#01113D",
+    "#002759",
+    "#01242F",
+    "#516F6B",
+  ],
   w: 300,
   h: 420,
 };
@@ -39,7 +47,7 @@ export const level2: level_name = {
 export const level3: level_name = {
   title: "The Swan No. 17",
   artist: "Hilma Af Klint",
-  start: '',
+  start: "",
   solution: (
     <div className="w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
       <div className="w-[160px] h-[160px] bg-[#5684C1] rounded-full"></div>
@@ -73,4 +81,33 @@ export const level3: level_name = {
   h: 300,
 };
 
-export const levels: level_name[] = [level1, level2, level3];
+export const level4: level_name = {
+  title: "The Mad Hatter",
+  artist: "Tarrant Hightopp",
+  start: "",
+  solution: (
+    <div className="w-[300px] h-[300px] bg-[#1e3a8a] relative flex items-center justify-center">
+      <div className="flex flex-col items-center">
+        <div className="relative w-40 h-28 bg-[#000000] rounded-t-xl rounded-b-sm overflow-hidden">
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-[#facc15]"></div>
+        </div>
+        <div className="w-56 h-6 bg-black rounded-full -mt-2"></div>
+      </div>
+    </div>
+  ),
+  solution_str: `<div class="w-screen h-screen bg-blue-900 relative flex items-center justify-center">
+  <div class="flex flex-col items-center">
+    <div class="relative w-40 h-28 bg-black rounded-t-xl rounded-b-sm overflow-hidden">
+      <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-4 bg-[#facc15]"></div>
+    </div>
+    <div class="w-56 h-6 bg-black rounded-full -mt-2"></div>
+  </div>
+</div>`,
+  svg_name: "/paintings/Mad_Hatter.png",
+  hint: "string",
+  colors: ["#000000", "#1e3a8a", "#facc15"],
+  w: 300,
+  h: 300,
+};
+
+export const levels: level_name[] = [level1, level2, level3, level4];
