@@ -5,7 +5,6 @@ export const level1: level_name = {
   artist: "Barnett Newman",
   start: `<div class="canvas w-screen h-screen bg-[#cd0000]">\n\t<div/>\n\t<div/>\n</div>`,
   solution: (
-
     <div className="soln_canvas w-[300px] h-[420px] bg-[#cd0000] flex flex-row justify-between">
       <div className="w-3 h-full bg-[#02007f]"></div>
       <div className="w-1 h-full bg-[#fec800]"></div>
@@ -30,7 +29,7 @@ export const level2: level_name = {
   artist: "Mika Tajima",
   start: `<div class="w-screen h-screen"/>`,
   solution: (
-    <div className="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>
+    <div className="soln_canvas w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>
   ),
   solution_str: `<div class="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>`,
   svg_name: "/paintings/mikatajima.png",
@@ -56,7 +55,7 @@ export const level3: level_name = {
   artist: "Hilma Af Klint",
   start: "",
   solution: (
-    <div className="w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
+    <div className="soln_canvas w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
       <div className="w-[160px] h-[160px] bg-[#5684C1] rounded-full"></div>
       <div className="absolute left-[23%] w-[80px] h-[160px] bg-[#DCD7CC] rounded-l-full"></div>
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] flex">
@@ -128,7 +127,7 @@ export const level5: level_name = {
   artist: "Piet Mondrian",
   start: "",
   solution: (
-    <div className="w-[300] h-[300] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
+    <div className="soln_canvas w-[300] h-[300] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
       <div className="bg-[#b6262b]" />
       <div className="bg-[#dee1e8]" />
       <div className="bg-[#dee1e8]" />
@@ -154,7 +153,8 @@ export const level5: level_name = {
     </div>
 </div>`,
   svg_name: "/paintings/mondrian.svg",
-  funfact: 'Piet Mondrian\'s "Composition" works are a hallmark of his Neoplasticism style, where he used only primary colors, black, white, and grey arranged in a strict grid of vertical and horizontal lines. He believed that these simplified forms could reveal the universal order and balance of the cosmos, a revolutionary idea that continues to influence modern art and design',
+  funfact:
+    'Piet Mondrian\'s "Composition" works are a hallmark of his Neoplasticism style, where he used only primary colors, black, white, and grey arranged in a strict grid of vertical and horizontal lines. He believed that these simplified forms could reveal the universal order and balance of the cosmos, a revolutionary idea that continues to influence modern art and design',
   hint: "string",
   colors: ["#dee1e8", "#b6262b", "#203385", "#d9a948"],
   w: 300,
