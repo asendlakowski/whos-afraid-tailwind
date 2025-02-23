@@ -43,7 +43,7 @@ const Home = () => {
           Your Art Gallery
         </div>
       </div>
-      <div className="w-full flex flex-row overflow-x-scroll space-x-10 p-[80px]">
+      <div className="w-full flex flex-row overflow-x-scroll space-x-10 p-[80px] no-scrollbar">
         {levels.map((level, index) => (
           <Level 
             key={index}

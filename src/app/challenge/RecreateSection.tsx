@@ -36,6 +36,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
   const [showBackgroundColors, setShowBackgroundColors] = useState(false);
   const colorArray = ["#CDD77C", "#315724", "#010101", "#5D8AA1", "#3239FB", "#9E779D", "#FF5260", "#FE868D", "#FF999A", "#BEBEBE"];
   const [hexCopiedIndex, hexSetCopiedIndex] = useState<number | null>(null);
+  const [backgroundColor, setBackgroundColor] = useState("#5D8AA1");
 
   const handleCopy = async (textToCopy: string, index: number) => {
     try {
@@ -49,14 +50,14 @@ const RecreateSection = (props: RecreateSectionProps) => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center my-2 overflow-y-scroll">
+    <div className="flex flex-col justify-between items-center my-2 overflow-y-scroll scrollbar-hide no-scrollbar">
       {/* Header Bar */}
-      <div className="w-full flex flex-row justify-between items-center sticky top-0">
+      <div className="w-full flex flex-row justify-between items-center sticky top-0 z-50" style={{ backgroundColor }}>
         <div className="flex flex-row gap-3 items-center">
           <div className="relative inline-block text-left">
             <Hamburger />
           </div>
-          <p className="text-white font-rb font-semibold text-lg opacity-75">
+          <p className="text-white font-rb font-semibold text-lg">
             LEVELS
           </p>
         </div>
@@ -186,7 +187,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
                     key={index}
                     className="flex items-center rounded-full"
                     style={{ backgroundColor: color }} // Set the button color dynamically
-                    onClick={() => setCurrBackground(color)} // Change the background color when clicked
+                    onClick={() => {setCurrBackground(color); setBackgroundColor(color);}} // Change the background color when clicked
                   >
                  <span className="w-[18px] h-[18px] rounded-full hover:border-2" />
                 </button>
