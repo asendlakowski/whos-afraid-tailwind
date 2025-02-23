@@ -24,7 +24,7 @@ const Home = () => {
                 <a href="#" className="block py-2 px-3 bg-[#3F46FB33] rounded-md text-[#3239FB]" aria-current="page">Gallery</a>
               </li>
               <li>
-                <a href="#" className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]">My Collection</a>
+                <a href="../mycollection" className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]">My Collection</a>
               </li>
               <li>
                 <a href="#" className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]">Community</a>
