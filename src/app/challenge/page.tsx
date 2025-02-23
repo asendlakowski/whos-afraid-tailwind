@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import RecreateSection from "./RecreateSection";
 import MonacoEditor from "../monacotest/monacoEditor";
 import YourCodeSection from "./YourCodeSection";
@@ -7,7 +7,7 @@ import Image from "next/image";
 import { levels } from "../leveltemplates/all_levels";
 import { useSearchParams } from "next/navigation";
 
-const Challenge = () => {
+const ChallengeContent = () => {
   const searchParams = useSearchParams();
   const levelnum = searchParams.get("level");
 
@@ -97,5 +97,11 @@ const Challenge = () => {
     </div>
   );
 };
+
+const Challenge = () => (
+  <Suspense fallback={<p>Loading...</p>}>
+    <ChallengeContent />
+  </Suspense>
+);
 
 export default Challenge;
