@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { levels } from "../leveltemplates/all_levels";
 
 const Home = () => {
   return (
@@ -28,8 +29,8 @@ const Home = () => {
             </li>
             <li>
               <a
-                href="../mycollection"
-                className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]"
+                href="#"
+                className="block py-2 px-3 bg-[#3F46FB33] rounded-md text-[#3239FB]"
               >
                 My Collection
               </a>
@@ -44,8 +45,8 @@ const Home = () => {
             </li>
             <li>
               <a
-                href="#"
-                className="block py-2 px-3 bg-[#3F46FB33] rounded-md text-[#3239FB]"
+                href="../aboutus"
+                className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]"
               >
                 About Us
               </a>
@@ -55,17 +56,24 @@ const Home = () => {
       </nav>
       <div className="w-full ">
         <div className="font-blinker text-[#3239FB] flex justify-center text-5xl">
-          About Us
+          My Collection
         </div>
-        <div className="font-blinker text-[#3239FB] flex justify-center text-5xl">
-            <ul>
-                <li>Owen</li>
-                <li>Alana</li>
-                <li>Kiara</li>
-                <li>Bill</li>
-                <li>Shannon</li>
-                <li>Jet</li>
-            </ul>
+        <div className="flex">
+          {levels.map((level, index) => {
+            const style = `w-[${level.w}px] h-[${level.h}px] mx-auto my-8 p-2 border-8 border-gray-800 rounded-lg shadow-2xl`;
+            return (
+              <div key={index} className={style}>
+                <Image
+                  className="relative"
+                  src={level.svg_name}
+                  alt="logo"
+                  height={300}
+                  width={level.w}
+                  priority
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

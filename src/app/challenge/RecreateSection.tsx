@@ -2,9 +2,7 @@
 import React, { ReactNode, useState } from "react";
 import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
-// import Link from "next/link";
 import Hamburger from "./Hamburger";
-import Link from "next/link";
 
 interface RecreateSectionProps {
   paintingWidth: number;
@@ -29,12 +27,23 @@ const RecreateSection = (props: RecreateSectionProps) => {
     colors,
     toggleLeftWindow,
     infoURL,
-    setCurrBackground
+    setCurrBackground,
   } = props;
   const [showHint, setShowHint] = useState(false);
   const [originalImage, setOriginalImage] = useState(false);
   const [showBackgroundColors, setShowBackgroundColors] = useState(false);
-  const colorArray = ["#CDD77C", "#315724", "#010101", "#5D8AA1", "#3239FB", "#9E779D", "#FF5260", "#FE868D", "#FF999A", "#BEBEBE"];
+  const colorArray = [
+    "#CDD77C",
+    "#315724",
+    "#010101",
+    "#5D8AA1",
+    "#3239FB",
+    "#9E779D",
+    "#FF5260",
+    "#FE868D",
+    "#FF999A",
+    "#BEBEBE",
+  ];
   const [hexCopiedIndex, hexSetCopiedIndex] = useState<number | null>(null);
   const [backgroundColor, setBackgroundColor] = useState("#5D8AA1");
 
@@ -52,14 +61,15 @@ const RecreateSection = (props: RecreateSectionProps) => {
   return (
     <div className="flex flex-col justify-between items-center my-2 overflow-y-scroll scrollbar-hide no-scrollbar">
       {/* Header Bar */}
-      <div className="w-full flex flex-row justify-between items-center sticky top-0 z-50" style={{ backgroundColor }}>
+      <div
+        className="w-full flex flex-row justify-between items-center sticky top-0 z-50"
+        style={{ backgroundColor }}
+      >
         <div className="flex flex-row gap-3 items-center">
           <div className="relative inline-block text-left">
             <Hamburger />
           </div>
-          <p className="text-white font-rb font-semibold text-lg">
-            LEVELS
-          </p>
+          <p className="text-white font-rb font-semibold text-lg">LEVELS</p>
         </div>
         <button onClick={toggleLeftWindow}>
           <Image
@@ -135,8 +145,15 @@ const RecreateSection = (props: RecreateSectionProps) => {
                     style={{ backgroundColor: c }} // Use inline style to apply dynamic color
                   />
                   <span>
-                    {hexCopiedIndex === i ? <p className="font-blinker text-[#333333] font-rb font-semibold">Copied!</p> : <p className="font-blinker text-[#333333] font-rb font-semibold">{c}</p>}
-
+                    {hexCopiedIndex === i ? (
+                      <p className="font-blinker text-[#333333] font-semibold">
+                        Copied!
+                      </p>
+                    ) : (
+                      <p className="font-blinker text-[#333333] font-semibold">
+                        {c}
+                      </p>
+                    )}
                   </span>
                 </div>
               </button>
@@ -152,8 +169,9 @@ const RecreateSection = (props: RecreateSectionProps) => {
 
       {/* Bottom Buttoms */}
       <div className="flex flex-row gap-5">
-        <Link
+        <a
           href={infoURL}
+          target="_blank"
           className="flex justify-center items-center bg-[#ffffff60] w-[38px] h-[38px] rounded-lg border-[1.5px] border-white"
         >
           <svg
@@ -166,7 +184,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
           >
             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2" />
           </svg>
-        </Link>
+        </a>
         <div className="relative">
           {showHint && (
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-primary-purple text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
@@ -182,23 +200,26 @@ const RecreateSection = (props: RecreateSectionProps) => {
           {showBackgroundColors && (
             <div className="absolute bottom-full left-[-20%] -translate-x-1/2 mb-2  px-3 pr-0 py-2 bg-[#CBCDFE] text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
               <div className="flex space-x-1">
-              {colorArray.map((color, index) => (
-                 <button
+                {colorArray.map((color, index) => (
+                  <button
                     key={index}
                     className="flex items-center rounded-full"
                     style={{ backgroundColor: color }} // Set the button color dynamically
-                    onClick={() => {setCurrBackground(color); setBackgroundColor(color);}} // Change the background color when clicked
+                    onClick={() => {
+                      setCurrBackground(color);
+                      setBackgroundColor(color);
+                    }} // Change the background color when clicked
                   >
-                 <span className="w-[18px] h-[18px] rounded-full hover:border-2" />
-                </button>
-              ))}
-              <span
-                className="w-[18px] h-[18px] rounded-sm"
-              />
+                    <span className="w-[18px] h-[18px] rounded-full hover:border-2" />
+                  </button>
+                ))}
+                <span className="w-[18px] h-[18px] rounded-sm" />
               </div>
             </div>
           )}
-          <button onClick={() => setShowBackgroundColors(!showBackgroundColors)}>
+          <button
+            onClick={() => setShowBackgroundColors(!showBackgroundColors)}
+          >
             <Image src="/painticon.svg" alt="hint" width={38} height={38} />
           </button>
         </div>
