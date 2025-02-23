@@ -6,6 +6,7 @@ import YourCodeSection from "./YourCodeSection";
 import Image from "next/image";
 import { levels } from "../leveltemplates/all_levels";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 const ChallengeContent = () => {
   const searchParams = useSearchParams();
@@ -35,6 +36,14 @@ const ChallengeContent = () => {
   const toggleLeftWindow = () => {
     setRecreateClosed(!recreateClosed);
   };
+  
+  useEffect(() => {
+    if (displayModelSoln) {
+      setCode(current_level.solution_str);
+      setDisplayModelSoln(false);
+    }
+  }, [displayModelSoln]);
+
   return (
     <div className="w-screen h-screen bg-secondary-blue">
       {fullscreen ? (
@@ -151,7 +160,7 @@ const ChallengeContent = () => {
 
             <Image
               className="m-2 w-full max-h-[300px] mx-auto drop-shadow-2xl border-8 rounded-lg border-[#D4D4D4]"
-              src="/paintings/whos_afraid_of_ryb.svg"
+              src={current_level.svg_name}
               alt="level"
               height={50}
               width={50}
@@ -173,9 +182,20 @@ const ChallengeContent = () => {
                 model solution?
               </span>
             </div>
-            <button className="mt-4 px-4 py-2 bg-primary-blue text-white rounded-full font-blinker text-sm">
+            <Link
+              className="mt-4 px-4 py-2 bg-primary-blue text-white rounded-full font-blinker text-sm"
+              href={{
+                pathname: "/challenge",
+                query: {
+                  level: String(
+                    ((Number(levelnum) + 1) % levels.length).toString()
+                  ),
+                },
+              }}
+              onClick={() => setIsCompleteModalOpen(false)}
+            >
               next challenge ={">"}
-            </button>
+            </Link>
           </div>
         </div>
       )}

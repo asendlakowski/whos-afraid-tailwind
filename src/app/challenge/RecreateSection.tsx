@@ -2,6 +2,8 @@
 import React, { ReactNode, useState } from "react";
 import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
+import Link from "next/link";
+
 
 interface RecreateSectionProps {
   paintingWidth: number;
@@ -25,7 +27,19 @@ const RecreateSection = (props: RecreateSectionProps) => {
   } = props;
   const [showHint, setShowHint] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [hexCopiedIndex, hexSetCopiedIndex] = useState<number | null>(null);
 
+  const handleCopy = async (textToCopy: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      hexSetCopiedIndex(index);
+      // display copied! for 2 sec
+      setTimeout(() => hexSetCopiedIndex(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
+  
   return (
     <div className="flex flex-col justify-between items-center my-2">
       {/* Header Bar */}
@@ -68,24 +82,36 @@ const RecreateSection = (props: RecreateSectionProps) => {
             {menuIsOpen && (
               <div className="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-[#D7E1E8] text-[#5D8AA1] z-10">
                 <div className="py-1">
-                  <a
-                    href="#"
+                  <Link
+                    href={{
+                      pathname: "/challenge",
+                      query: { level: String(0) },
+                    }}
                     className="block px-4 py-3 text-med text-gray-700 hover:px-4 font-blinker hover:font-bold"
+                    onClick={() => setMenuIsOpen(false)}
                   >
                     Level 1
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href={{
+                      pathname: "/challenge",
+                      query: { level: String(1) },
+                    }}
                     className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
+                    onClick={() => setMenuIsOpen(false)}
                   >
                     Level 2
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href={{
+                      pathname: "/challenge",
+                      query: { level: String(2) },
+                    }}
                     className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
+                    onClick={() => setMenuIsOpen(false)}
                   >
                     Level 3
-                  </a>
+                  </Link>
                 </div>
               </div>
             )}
@@ -136,15 +162,23 @@ const RecreateSection = (props: RecreateSectionProps) => {
         <div className="grid grid-cols-3 w-[320px] justify-items-center gap-2">
           {colors.map((c, i) => {
             return (
+              <button key={i} onClick={() => handleCopy(c, i)}>
               <div
                 key={i}
                 className="w-full bg-[#ffffff60] rounded-md p-1 flex flex-row gap-1 justify-center items-center"
               >
-                <div className={`w-[18px] h-[18px] bg-[${c}] rounded-sm`} />
-                {/* <div className={`w-[18px] h-[18px] bg-[#02007F] rounded-sm`} /> */}
-
-                <p className="text-[#333333] font-rb font-semibold">{c}</p>
+                <span
+                  className="w-[18px] h-[18px] rounded-sm"
+                  style={{ backgroundColor: c }} // Use inline style to apply dynamic color
+                />
+                <span>
+                  {hexCopiedIndex === i ? <p className="font-blinker text-[#333333] font-rb font-semibold">Copied!</p> : <p className="font-blinker text-[#333333] font-rb font-semibold">{c}</p>}
+                </span>
+                {/* <div className="w-[18px] h-[18px] bg-[${c}] rounded-sm" style={{ backgroundColor: c }} /> */}
+                {/* <p className="text-[#333333] font-rb font-semibold">{c}</p> */}
               </div>
+              {/* {hexIsCopied ? "Copied!" : "Copy Text"} */}
+              </button>
             );
           })}
         </div>
