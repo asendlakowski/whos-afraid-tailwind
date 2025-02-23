@@ -49,6 +49,7 @@ const Hamburger = () => {
             return (
               <Link
                 key={ch.data}
+                onClick={() => setMenuIsOpen(false)}
                 href={
                   ch.data === "-1"
                     ? { pathname: "/home" }
