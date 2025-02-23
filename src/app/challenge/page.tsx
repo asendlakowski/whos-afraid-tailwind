@@ -7,6 +7,7 @@ import Image from "next/image";
 import { levels } from "../leveltemplates/all_levels";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Hamburger from "./Hamburger";
 
 const ChallengeContent = () => {
   const searchParams = useSearchParams();
@@ -36,7 +37,7 @@ const ChallengeContent = () => {
   const toggleLeftWindow = () => {
     setRecreateClosed(!recreateClosed);
   };
-  
+
   useEffect(() => {
     if (displayModelSoln) {
       setCode(current_level.solution_str);
@@ -73,18 +74,27 @@ const ChallengeContent = () => {
           }`}
         >
           {recreateClosed ? (
-            <button
-              onClick={toggleLeftWindow}
-              className="flex justify-center items-center bg-[#FFFFFFB0] w-full h-full rounded-xl"
-            >
-              <Image
-                src="caret.svg"
-                alt="reopen window button"
-                width={24}
-                height={24}
-                className="fill-white stroke-white"
-              />
-            </button>
+            <div className="flex flex-col justify-start items-center w-full h-full gap-2">
+              <Hamburger />
+              <button
+                onClick={toggleLeftWindow}
+                className="inline-flex justify-center w-full rounded-md px-3 py-1 text-white hover:bg-[#D7E1E8] hover:text-secondary-blue"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                  className="bi bi-arrow-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+              </button>
+            </div>
           ) : (
             <RecreateSection
               paintingWidth={current_level.w}

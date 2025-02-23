@@ -2,8 +2,8 @@
 import React, { ReactNode, useState } from "react";
 import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
-import Link from "next/link";
-
+// import Link from "next/link";
+import Hamburger from "./Hamburger";
 
 interface RecreateSectionProps {
   paintingWidth: number;
@@ -26,7 +26,6 @@ const RecreateSection = (props: RecreateSectionProps) => {
     toggleLeftWindow,
   } = props;
   const [showHint, setShowHint] = useState(false);
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [hexCopiedIndex, hexSetCopiedIndex] = useState<number | null>(null);
 
   const handleCopy = async (textToCopy: string, index: number) => {
@@ -36,85 +35,17 @@ const RecreateSection = (props: RecreateSectionProps) => {
       // display copied! for 2 sec
       setTimeout(() => hexSetCopiedIndex(null), 2000);
     } catch (err) {
-      console.error('Failed to copy text: ', err);
+      console.error("Failed to copy text: ", err);
     }
   };
-  
+
   return (
     <div className="flex flex-col justify-between items-center my-2">
       {/* Header Bar */}
       <div className="w-full flex flex-row justify-between items-center">
         <div className="flex flex-row gap-3 items-center">
           <div className="relative inline-block text-left">
-            {/* Hamburger Icon Button */}
-            <button
-              onClick={() => setMenuIsOpen(!menuIsOpen)}
-              className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-secondary-blue text-sm font-medium text-[#D7E1E8] hover:bg-[#D7E1E8] hover:text-secondary-blue focus:outline-none"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {menuIsOpen ? (
-                  // X icon when menu is open
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  // Hamburger icon when menu is closed
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-
-            {/* Dropdown Menu */}
-            {menuIsOpen && (
-              <div className="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-[#D7E1E8] text-secondary-blue z-10">
-                <div className="py-1">
-                  <Link
-                    href={{
-                      pathname: "/challenge",
-                      query: { level: String(0) },
-                    }}
-                    className="block px-4 py-3 text-med text-gray-700 hover:px-4 font-blinker hover:font-bold"
-                    onClick={() => setMenuIsOpen(false)}
-                  >
-                    Level 1
-                  </Link>
-                  <Link
-                    href={{
-                      pathname: "/challenge",
-                      query: { level: String(1) },
-                    }}
-                    className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
-                    onClick={() => setMenuIsOpen(false)}
-                  >
-                    Level 2
-                  </Link>
-                  <Link
-                    href={{
-                      pathname: "/challenge",
-                      query: { level: String(2) },
-                    }}
-                    className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
-                    onClick={() => setMenuIsOpen(false)}
-                  >
-                    Level 3
-                  </Link>
-                </div>
-              </div>
-            )}
+            <Hamburger />
           </div>
           <p className="text-white font-rb font-semibold text-lg opacity-75">
             LEVELS
@@ -163,21 +94,29 @@ const RecreateSection = (props: RecreateSectionProps) => {
           {colors.map((c, i) => {
             return (
               <button key={i} onClick={() => handleCopy(c, i)}>
-              <div
-                key={i}
-                className="w-full bg-[#ffffff60] rounded-md p-1 flex flex-row gap-1 justify-center items-center"
-              >
-                <span
-                  className="w-[18px] h-[18px] rounded-sm"
-                  style={{ backgroundColor: c }} // Use inline style to apply dynamic color
-                />
-                <span>
-                  {hexCopiedIndex === i ? <p className="font-blinker text-[#333333] font-rb font-semibold">Copied!</p> : <p className="font-blinker text-[#333333] font-rb font-semibold">{c}</p>}
-                </span>
-                {/* <div className="w-[18px] h-[18px] bg-[${c}] rounded-sm" style={{ backgroundColor: c }} /> */}
-                {/* <p className="text-[#333333] font-rb font-semibold">{c}</p> */}
-              </div>
-              {/* {hexIsCopied ? "Copied!" : "Copy Text"} */}
+                <div
+                  key={i}
+                  className="w-full bg-[#ffffff60] rounded-md p-1 flex flex-row gap-1 justify-center items-center"
+                >
+                  <span
+                    className="w-[18px] h-[18px] rounded-sm"
+                    style={{ backgroundColor: c }} // Use inline style to apply dynamic color
+                  />
+                  <span>
+                    {hexCopiedIndex === i ? (
+                      <p className="font-blinker text-[#333333] font-rb font-semibold">
+                        Copied!
+                      </p>
+                    ) : (
+                      <p className="font-blinker text-[#333333] font-rb font-semibold">
+                        {c}
+                      </p>
+                    )}
+                  </span>
+                  {/* <div className="w-[18px] h-[18px] bg-[${c}] rounded-sm" style={{ backgroundColor: c }} /> */}
+                  {/* <p className="text-[#333333] font-rb font-semibold">{c}</p> */}
+                </div>
+                {/* {hexIsCopied ? "Copied!" : "Copy Text"} */}
               </button>
             );
           })}
