@@ -93,6 +93,7 @@ const ChallengeContent = () => {
               artist={current_level.artist}
               painting={current_level.solution}
               colors={current_level.colors}
+              svg_name={current_level.svg_name}
               toggleLeftWindow={toggleLeftWindow}
             />
           )}
