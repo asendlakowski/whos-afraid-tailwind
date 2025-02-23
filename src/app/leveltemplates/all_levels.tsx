@@ -29,7 +29,7 @@ export const level2: level_name = {
   artist: "Piet Mondrian",
   start: '<div class="canvas w-screen h-screen">\n</div>',
   solution: (
-    <div className="w-[300] h-[300] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
+    <div className="w-[300px] h-[300px] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
       <div className="bg-[#b6262b]" />
       <div className="bg-[#dee1e8]" />
       <div className="bg-[#dee1e8]" />
