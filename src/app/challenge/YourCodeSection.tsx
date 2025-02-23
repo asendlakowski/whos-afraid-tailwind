@@ -3,6 +3,7 @@ import Image from "next/image";
 
 interface YourCodeSectionProps {
   frame: ReactNode;
+  onSubmitClicked: () => void;
 }
 
 const YourCodeSection = (props: YourCodeSectionProps) => {
@@ -14,7 +15,7 @@ const YourCodeSection = (props: YourCodeSectionProps) => {
       </p>
       {frame}
       <button
-        onClick={() => {}}
+        onClick={() => {props.onSubmitClicked()}}
         className="flex flex-row justify-center items-center gap-2 bg-primary-blue py-2 px-4 rounded-full border drop-shadow-xl"
       >
         <Image src="sendicon.svg" alt="send icon" width={12} height={12} />
