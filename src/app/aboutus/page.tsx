@@ -36,7 +36,7 @@ const Home = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="../community"
                 className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]"
               >
                 Community

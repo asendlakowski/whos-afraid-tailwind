@@ -1,8 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { levels } from "../leveltemplates/all_levels";
 
-const Home = () => {
+const Community = () => {
   return (
     <div className="bg-gradient-to-t from-white via-white via-75% to-primary-purple w-screen h-screen">
       <nav className="">
@@ -29,16 +28,16 @@ const Home = () => {
             </li>
             <li>
               <a
-                href="#"
-                className="block py-2 px-3 bg-[#3F46FB33] rounded-md text-[#3239FB]"
+                href="../mycollection"
+                className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]"
               >
                 My Collection
               </a>
             </li>
             <li>
               <a
-                href="../community"
-                className="block py-2 px-3 text-black rounded-md hover:bg-[#3F46FB33] border-0 hover:text-[#3239FB]"
+                href="#"
+                className="block py-2 px-3 bg-[#3F46FB33] rounded-md text-[#3239FB]"
               >
                 Community
               </a>
@@ -55,29 +54,15 @@ const Home = () => {
         </div>
       </nav>
       <div className="w-full ">
-        <div className="font-blinker text-[#3239FB] flex justify-center text-5xl">
-          My Collection
+        <div className="font-blinker text-[#3239FB] flex justify-center text-5xl mb-6">
+          Community
         </div>
-        <div className="flex">
-          {levels.map((level, index) => {
-            const style = `w-[${level.w}px] h-[${level.h}px] mx-auto my-8 p-2 border-8 border-gray-800 rounded-lg shadow-2xl`;
-            return (
-              <div key={index} className={style}>
-                <Image
-                  className="relative"
-                  src={level.svg_name}
-                  alt="logo"
-                  height={300}
-                  width={level.w}
-                  priority
-                />
-              </div>
-            );
-          })}
+        <div className="font-blinker text-[#3239FB] flex justify-center text-3xl text-center">
+          Feature Coming Soon!
         </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Community;
