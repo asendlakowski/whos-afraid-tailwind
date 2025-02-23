@@ -29,7 +29,7 @@ const YourCodeSection = (props: YourCodeSectionProps) => {
       <div className="flex flex-col justify-center items-center w-full bg-[#F5F4E260] border-t border-b border-primary-blue py-4 gap-2">
         <p className="font-semibold text-base text-primary-blue">Did you Know?</p>
         <p className="text-sm text-primary-blue px-4 text-center">
-          There's a pretty fun fact about this painting out there, but we have not added it yet!
+          There&apos;s a pretty fun fact about this painting out there, but we have not added it yet!
         </p>
       </div>
     </div>
