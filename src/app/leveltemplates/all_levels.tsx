@@ -3,9 +3,9 @@ import { level_name } from "./level_type";
 export const level1: level_name = {
   title: "Who's Afraid of Red, Yellow, and Blue I",
   artist: "Barnett Newman",
-  start: `<div class="w-screen h-screen bg-[#cd0000]">\n\t<div/>\n\t<div/>\n</div>`,
+  start: `<div class="canvas w-screen h-screen bg-[#cd0000]">\n\t<div/>\n\t<div/>\n</div>`,
   solution: (
-    <div className="w-[300px] h-[420] bg-[#cd0000] flex flex-row justify-between">
+    <div className="soln_canvas w-[300px] h-[420px] bg-[#cd0000] flex flex-row justify-between">
       <div className="w-3 h-full bg-[#02007f]"></div>
       <div className="w-1 h-full bg-[#fec800]"></div>
     </div>
@@ -26,7 +26,15 @@ export const level2: level_name = {
   ),
   svg_name: "/paintings/mikatajima.png",
   hint: "string",
-  colors: ["#0B111B","#00275A","#01285C","#01113D","#002759","#01242F","#516F6B"],
+  colors: [
+    "#0B111B",
+    "#00275A",
+    "#01285C",
+    "#01113D",
+    "#002759",
+    "#01242F",
+    "#516F6B",
+  ],
   w: 300,
   h: 420,
 };
@@ -34,7 +42,7 @@ export const level2: level_name = {
 export const level3: level_name = {
   title: "The Swan No. 17",
   artist: "Hilma Af Klint",
-  start: '',
+  start: "",
   solution: (
     <div className="w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
       <div className="w-[160px] h-[160px] bg-[#5684C1] rounded-full"></div>
