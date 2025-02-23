@@ -3,9 +3,9 @@ import { level_name } from "./level_type";
 export const level1: level_name = {
     title: "Who's Afraid of Red, Yellow, and Blue I",
     artist: "Barnett Newman",
-    solution: `<div className="w-[300px] h-[420] bg-[#cd0000] flex flex-row justify-between">
-       <div className="w-3 h-full bg-[#02007f]"></div>
-       <div className="w-1 h-full bg-[#fec800]"></div></div>`,
+    solution: `<div class="w-[300px] h-[420px] bg-[#cd0000] flex flex-row justify-between">
+       <div class="w-3 h-full bg-[#02007f]"></div>
+       <div class="w-1 h-full bg-[#fec800]"></div></div>`,
     svg_name: "/paintings/whos_afraid_of_ryb.svg",
     hint: "string",
     colors: ["#cd0000", "#02007f", "#fec800"],
@@ -16,7 +16,7 @@ export const level1: level_name = {
 export const level2: level_name = {
     title: "Unnamed",
     artist: "Mika Tajima",
-    solution: `<div className="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>`,
+    solution: `<div class="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>`,
     svg_name: "/paintings/mikatajima.png",
     hint: "string",
     colors: ["#0B111B", "#0B111B", "#00275A", "#01285C", "#01113D", "#002759", "#01242F", "#516F6B"],
