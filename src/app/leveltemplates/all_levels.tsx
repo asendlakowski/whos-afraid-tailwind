@@ -26,16 +26,7 @@ export const level2: level_name = {
   ),
   svg_name: "/paintings/mikatajima.png",
   hint: "string",
-  colors: [
-    "#0B111B",
-    "#0B111B",
-    "#00275A",
-    "#01285C",
-    "#01113D",
-    "#002759",
-    "#01242F",
-    "#516F6B",
-  ],
+  colors: ["#0B111B","#00275A","#01285C","#01113D","#002759","#01242F","#516F6B"],
   w: 300,
   h: 420,
 };
@@ -43,7 +34,7 @@ export const level2: level_name = {
 export const level3: level_name = {
   title: "The Swan No. 17",
   artist: "Hilma Af Klint",
-  start: "",
+  start: '',
   solution: (
     <div className="w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
       <div className="w-[160px] h-[160px] bg-[#5684C1] rounded-full"></div>

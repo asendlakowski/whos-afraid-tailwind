@@ -130,7 +130,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
                 key={i}
                 className="w-full bg-[#ffffff60] rounded-md p-1 flex flex-row gap-1 justify-center items-center"
               >
-                <div className={`w-[18px] h-[18px] bg-[${c}] rounded-sm`} />
+                <div className="w-[18px] h-[18px] bg-[${c}] rounded-sm" style={{ backgroundColor: c }} />
                 {/* <div className={`w-[18px] h-[18px] bg-[#02007F] rounded-sm`} /> */}
 
                 <p className="text-[#333333] font-rb font-semibold">{c}</p>
