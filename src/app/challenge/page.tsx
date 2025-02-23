@@ -1,14 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RecreateSection from "./RecreateSection";
 import MonacoEditor from "../monacotest/monacoEditor";
 import YourCodeSection from "./YourCodeSection";
 import Image from "next/image";
+import { levels } from "../leveltemplates/all_levels";
+import { useSearchParams } from "next/navigation";
 
 const Challenge = () => {
-  //Change this to what the initial code is:
-  const [code, setCode] = useState<string>("Hello World");
+  const searchParams = useSearchParams();
+  const levelnum = searchParams.get("level");
+
+  const [current_level, set_current_level] = useState(levels[0]);
+  const [code, setCode] = useState<string>(""); //Change this to what the initial code is:
   const [fullscreen, setFullScreen] = useState<boolean>(false);
+
+  useEffect(() => {
+    set_current_level(levelnum ? levels[Number(levelnum)] : levels[0]);
+  }, [levelnum]);
+
+  useEffect(() => {
+    setCode(current_level.start);
+  }, [current_level]);
 
   return (
     <div className="w-screen h-screen bg-secondary-blue">
@@ -26,23 +39,19 @@ const Challenge = () => {
       ) : (
         <div className="grid grid-cols-[2fr_3fr_3fr] w-screen h-screen gap-5 pt-10 px-5 pb-5">
           <RecreateSection
-            paintingWidth={300}
-            paintingHeight={420}
-            title="Who's Afraid of Red, Yellow, and Blue I"
-            artist="Barnett Newman"
-            painting={
-              <div className="w-[300px] h-[420] bg-[#cd0000] flex flex-row justify-between">
-                <div className="w-3 h-full bg-[#02007f]"></div>
-                <div className="w-1 h-full bg-[#fec800]"></div>
-              </div>
-            }
+            paintingWidth={current_level.w}
+            paintingHeight={current_level.h}
+            title={current_level.title}
+            artist={current_level.artist}
+            painting={current_level.solution}
+            colors={current_level.colors}
           />
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
             <div className="flex justify-end space-x-4 mt-4 mr-4">
               <button
                 className="bg-primary-blue text-white font-rb rounded-md px-3 py-0.5"
                 // Reset to the intial value
-                onClick={() => setCode("")}
+                onClick={() => setCode(current_level.start)}
               >
                 reset
               </button>
@@ -56,7 +65,7 @@ const Challenge = () => {
             frame={
               <iframe
                 title="output"
-                className="bg-black w-[300px] h-[420px]"
+                className={`bg-black w-[${current_level.w}px] h-[${current_level.h}px] m-2`}
                 srcDoc={`
                 <!DOCTYPE html>
                 <html lang="en">

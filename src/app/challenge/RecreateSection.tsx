@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { ReactNode, useState } from "react";
 import { level1 } from "../leveltemplates/all_levels";
 import Image from "next/image";
@@ -9,11 +9,12 @@ interface RecreateSectionProps {
   painting: ReactNode;
   title: string;
   artist: string;
+  colors: string[];
 }
 
-
 const RecreateSection = (props: RecreateSectionProps) => {
-  const { paintingWidth, paintingHeight, title, artist, painting } = props;
+  const { paintingWidth, paintingHeight, title, artist, painting, colors } =
+    props;
   const [showHint, setShowHint] = useState(false);
   return (
     <div className="flex flex-col justify-between items-center my-2">
@@ -68,10 +69,20 @@ const RecreateSection = (props: RecreateSectionProps) => {
         </div>
 
         {/* Hex code section */}
-        <div className="grid grid-cols-3 w-[320px] justify-items-center">
-          <div className="w-12 h-6 bg-white" />
-          <div className="w-12 h-6 bg-white" />
-          <div className="w-12 h-6 bg-white" />
+        <div className="grid grid-cols-3 w-[320px] justify-items-center gap-2">
+          {colors.map((c, i) => {
+            return (
+              <div
+                key={i}
+                className="w-full bg-[#ffffff60] rounded-md p-1 flex flex-row gap-1 justify-center items-center"
+              >
+                <div className={`w-[18px] h-[18px] bg-[${c}] rounded-sm`} />
+                {/* <div className={`w-[18px] h-[18px] bg-[#02007F] rounded-sm`} /> */}
+
+                <p className="text-[#333333] font-rb font-semibold">{c}</p>
+              </div>
+            );
+          })}
         </div>
 
         <p className="text-white font-rb font-bold text-sm opacity-75 text-left max-w-[320px]">
@@ -86,9 +97,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
         <div className="relative">
           {showHint && (
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-[#CBCDFE] text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
-              <div className="font-bold">
-                Hint for You
-              </div>
+              <div className="font-bold">Hint for You</div>
               {level1.hint}
             </div>
           )}
