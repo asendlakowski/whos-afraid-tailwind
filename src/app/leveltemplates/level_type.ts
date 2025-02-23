@@ -5,6 +5,7 @@ export interface level_name{
     artist: string;
     start: string;
     solution: ReactNode;
+    solution_str: string;
     svg_name: string;
     hint: string;
     colors: string[];

@@ -2,6 +2,7 @@
 import React, { ReactNode, useState } from "react";
 import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
+import Link from "next/link";
 
 interface RecreateSectionProps {
   paintingWidth: number;
@@ -60,24 +61,36 @@ const RecreateSection = (props: RecreateSectionProps) => {
             {menuIsOpen && (
               <div className="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-[#D7E1E8] text-[#5D8AA1] z-10">
                 <div className="py-1">
-                  <a
-                    href="#"
+                  <Link
+                    href={{
+                      pathname: "/challenge",
+                      query: { level: String(0) },
+                    }}
                     className="block px-4 py-3 text-med text-gray-700 hover:px-4 font-blinker hover:font-bold"
+                    onClick={() => setMenuIsOpen(false)}
                   >
                     Level 1
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href={{
+                      pathname: "/challenge",
+                      query: { level: String(1) },
+                    }}
                     className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
+                    onClick={() => setMenuIsOpen(false)}
                   >
                     Level 2
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    href={{
+                      pathname: "/challenge",
+                      query: { level: String(2) },
+                    }}
                     className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
+                    onClick={() => setMenuIsOpen(false)}
                   >
                     Level 3
-                  </a>
+                  </Link>
                 </div>
               </div>
             )}
