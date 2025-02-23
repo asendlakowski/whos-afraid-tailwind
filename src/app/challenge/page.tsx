@@ -14,6 +14,7 @@ const Challenge = () => {
 
   const onSubmitClicked = () => {
     setIsCompleteModalOpen(true);
+    console.log("printing to not error", displayModelSoln);
   }
 
   return (
