@@ -6,7 +6,7 @@ import { levels } from "../leveltemplates/all_levels";
 
 const Home = () => {
   return (
-    <div className="bg-gradient-to-t from-white via-white via-75% to-[#CBCDFE] w-screen h-screen">
+    <div className="bg-gradient-to-t from-white via-white via-75% to-primary-purple w-screen h-screen">
       <nav className="">
         <div className="max-w-screen-xl flex flex-wrap items-center p-[30px] pl-[80px] ">
           <a href="/home" className="">

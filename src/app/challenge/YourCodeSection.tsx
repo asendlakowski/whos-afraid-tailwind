@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import Image from "next/image";
+import PercentBar from "./PercentBar";
 
 interface YourCodeSectionProps {
   frame: ReactNode;
@@ -13,9 +14,10 @@ const YourCodeSection = (props: YourCodeSectionProps) => {
       <p className="text-primary-blue font-rb font-bold text-2xl text-center">
         YOUR CODE OUTPUT
       </p>
-      <div className="rounded-xl border-4 border-solid border-[#CBCDFE]">
+      <div className="rounded-xl border-4 border-solid border-primary-purple">
         {frame}
       </div>
+      <PercentBar percent={80}></PercentBar>
       <button
         onClick={() => {props.onSubmitClicked()}}
         className="flex flex-row justify-center items-center gap-2 bg-primary-blue py-2 px-4 rounded-full border drop-shadow-xl"
