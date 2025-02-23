@@ -23,8 +23,9 @@ const ChallengeContent = () => {
   const [isCompleteModalOpen, setIsCompleteModalOpen] =
     useState<boolean>(false);
   const [displayModelSoln, setDisplayModelSoln] = useState<boolean>(false);
+  const [currBackground, setCurrBackground] = useState("#5D8AA1");
   const [recreateClosed, setRecreateClosed] = useState<boolean>(false);
-
+  
   const onClickHandlePopup = () => {
     setIsCompleteModalOpen(true);
     console.log("printing to not error", displayModelSoln);
@@ -105,7 +106,7 @@ const ChallengeContent = () => {
   }, [displayModelSoln]);
 
   return (
-    <div className="w-screen h-screen bg-secondary-blue overflow-hidden flex flex-col">
+    <div className="w-screen h-screen overflow-hidden flex flex-col" style={{background: currBackground}}>
       {fullscreen ? (
         <div className="grid grid-cols-1 w-screen h-full gap-5 pt-5 px-5 pb-5">
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
@@ -165,6 +166,7 @@ const ChallengeContent = () => {
               svg_name={current_level.svg_name}
               toggleLeftWindow={toggleLeftWindow}
               infoURL={current_level.infolink}
+              setCurrBackground = {setCurrBackground}
             />
           )}
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
