@@ -54,11 +54,11 @@ const Home = () => {
         </div>
       </nav>
       <div className="w-full ">
-        <div className="font-blinker text-[#3239FB] flex justify-center text-5xl mb-8">
+        <div className="font-blinker text-[#3239FB] flex justify-center text-5xl mb-6">
           About Us
         </div>
         <div className="font-blinker text-[#3239FB] flex justify-center text-3xl text-center">
-          <ul className="flex flex-col gap-6">
+          <ul className="flex flex-col gap-4">
             <li className="flex flex-col justify-center items-center">
               <p>Owen</p>
               <p className="text-sm">Developer</p>
@@ -68,7 +68,7 @@ const Home = () => {
               <p className="text-sm">Developer</p>
             </li>
             <li className="flex flex-col justify-center items-center">
-              <p>Kiara</p>
+              <p>Chiara</p>
               <p className="text-sm">Developer</p>
             </li>
             <li className="flex flex-col justify-center items-center">
