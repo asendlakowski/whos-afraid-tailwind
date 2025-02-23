@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Hamburger = () => {
+const Hamburger = ({ currBackground }: { currBackground: string }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const choices = [
     { name: "Home", data: "-1" },
@@ -11,12 +11,13 @@ const Hamburger = () => {
     { name: "Level 4", data: "3" },
     { name: "Level 5", data: "4" },
   ];
+  // console.log(currBackground);
 
   return (
     <div>
       <button
         onClick={() => setMenuIsOpen(!menuIsOpen)}
-        className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-secondary-blue text-sm font-medium text-[#D7E1E8] hover:bg-[#D7E1E8] hover:text-secondary-blue focus:outline-none"
+        className="inline-flex justify-center w-full rounded-md px-4 py-2 text-sm font-medium focus:outline-none hover:text-opacity-75"
       >
         <svg
           className="w-6 h-6"
@@ -45,9 +46,14 @@ const Hamburger = () => {
         </svg>
       </button>
       {menuIsOpen && (
-        <div className="origin-top-right absolute mt-2 w-56 py-1 rounded-md shadow-lg bg-[#D7E1E8] text-secondary-blue z-10">
-          {choices.map((ch) => {
+         <div 
+          className="absolute origin-top-right fixed mt-2 w-56 py-1 shadow-lg bg-white bg-opacity-75 z-[999]" 
+          style={{ backgroundColor: currBackground}}
+        >
+        <div className="w-full">
+        {choices.map((ch) => {
             return (
+              <div key={ch.data} style={{backgroundColor: currBackground}}>
               <Link
                 key={ch.data}
                 onClick={() => setMenuIsOpen(false)}
@@ -59,12 +65,19 @@ const Hamburger = () => {
                         query: { level: ch.data },
                       }
                 }
-                className="block px-4 py-3 text-med text-gray-700 hover:px-4 font-blinker hover:font-bold"
+                
+                className="block px-4 py-3 text-med font-blinker hover:font-bold bg-white bg-opacity-75"
+                style={{
+                  color: currBackground,
+                  marginBottom: 0
+                }}
               >
                 {ch.name}
               </Link>
+              </div>
             );
           })}
+        </div>
         </div>
       )}
     </div>
