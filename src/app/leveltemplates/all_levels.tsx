@@ -26,7 +26,7 @@ export const level2: level_name = {
   artist: "Mika Tajima",
   start: `<div class="w-screen h-screen"/>`,
   solution: (
-    <div className="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>
+    <div className="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>
   ),
   solution_str: `<div class="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>`,
   svg_name: "/paintings/mikatajima.png",
