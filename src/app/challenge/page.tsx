@@ -29,6 +29,13 @@ const Challenge = () => {
         <div className="grid grid-cols-1 w-screen h-screen gap-5 pt-5 px-5 pb-5">
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
             <div className="flex justify-end space-x-4 mt-4 mr-4">
+              <button
+                className="bg-primary-blue text-white font-rb rounded-md px-3 py-0.5"
+                // Reset to the intial value
+                onClick={() => setCode(current_level.start)}
+              >
+                reset
+              </button>
               <button onClick={() => setFullScreen(false)}>
                 <Image src="Vector.svg" alt="fun fact" width={18} height={18} />
               </button>
