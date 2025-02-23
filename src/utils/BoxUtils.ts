@@ -1,5 +1,4 @@
 import { Box } from "@/utils/BoxType";
-import { ClientPageRoot } from "next/dist/client/components/client-page";
 
 const get_box_data = (html_elem: Element, canvas: Element) => {
   const computed_styles = window.getComputedStyle(html_elem);
@@ -116,7 +115,7 @@ const compute_color_diff = (user_box: Box, soln_box: Box) => {
 };
 
 const compute_diff = (user_boxes: Box[], soln_boxes: Box[]) => {
-  const diff_subsections = soln_boxes.length;
+  let diff_subsections = soln_boxes.length;
   const local_diffs: number[] = [];
   const rounded_pattern = /rounded-(?:\[[^\]]*\]|full)/;
 
@@ -144,7 +143,42 @@ const compute_diff = (user_boxes: Box[], soln_boxes: Box[]) => {
         continue;
       }
 
-      if (is_both_circles || is_both_not_circles) {
+      const regex = /#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})(?=\b)/g;
+      const colors = user_box.classname.match(regex);
+      const soln_colors = soln_box.classname.match(regex);
+
+      if (colors && soln_colors) {
+        diff_subsections = soln_colors.length;
+        let diff = 0.0;
+
+        if (colors.length != soln_colors.length) {
+          const missing_elems = Math.abs(colors.length - soln_colors.length);
+          for (let i = 0; i < missing_elems; i++) {
+            diff += 1 / diff_subsections;
+          }
+
+          return diff;
+        }
+
+        const iteration_bound = Math.min(colors.length, soln_colors?.length);
+        let num_correct_colors = 0;
+
+        for (let i = 0; i < iteration_bound; i++) {
+          if (colors[i] == soln_colors[i]) {
+            num_correct_colors++;
+          }
+        }
+
+        if (num_correct_colors != diff_subsections) {
+          if (diff_subsections > num_correct_colors) {
+            for (let i = 0; i < diff_subsections - num_correct_colors; i++) {
+              diff += 1 / diff_subsections;
+            }
+          }
+        }
+
+        return diff;
+      } else if (is_both_circles || is_both_not_circles) {
         if (is_both_circles && is_same_circle(user_box, soln_box)) {
           soln_box.is_accounted_for = true;
           user_box.is_accounted_for = true;
