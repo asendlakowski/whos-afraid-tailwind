@@ -46,9 +46,9 @@ const ChallengeContent = () => {
   }, [displayModelSoln]);
 
   return (
-    <div className="w-screen h-screen bg-secondary-blue">
+    <div className="w-screen h-screen bg-secondary-blue overflow-hidden flex flex-col">
       {fullscreen ? (
-        <div className="grid grid-cols-1 w-screen h-screen gap-5 pt-5 px-5 pb-5">
+        <div className="grid grid-cols-1 w-screen h-full gap-5 pt-5 px-5 pb-5">
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
             <div className="flex justify-end space-x-4 mt-4 mr-4">
               <button
@@ -67,7 +67,7 @@ const ChallengeContent = () => {
         </div>
       ) : (
         <div
-          className={`grid w-screen h-screen gap-5 pt-10 px-5 pb-5 ease-in-out ${
+          className={`grid w-screen h-full gap-5 pt-5 px-5 pb-5 ease-in-out ${
             recreateClosed
               ? "grid-cols-[50px_minmax(0,3fr)_minmax(0,3fr)]"
               : "grid-cols-[minmax(0,2fr)_minmax(0,3fr)_minmax(0,3fr)]"

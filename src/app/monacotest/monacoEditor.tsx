@@ -21,7 +21,7 @@ const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
   };
 
   return (
-    <div className="flex flex-col items-center h-[95%] p-4">
+    <div className="flex flex-col items-center h-[30%] p-4">
       <Editor
         language="html"
         theme="vs-light"
