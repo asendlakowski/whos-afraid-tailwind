@@ -18,6 +18,7 @@ const ChallengeContent = () => {
   const [isCompleteModalOpen, setIsCompleteModalOpen] =
     useState<boolean>(false);
   const [displayModelSoln, setDisplayModelSoln] = useState<boolean>(false);
+  const [currBackground, setCurrBackground] = useState("#5D8AA1");
 
   const onSubmitClicked = () => {
     setIsCompleteModalOpen(true);
@@ -40,7 +41,7 @@ const ChallengeContent = () => {
   }, [displayModelSoln]);
 
   return (
-    <div className="w-screen h-screen bg-secondary-blue">
+    <div className="w-screen h-screen" style={{background: currBackground}}>
       {fullscreen ? (
         <div className="grid grid-cols-1 w-screen h-screen gap-5 pt-5 px-5 pb-5">
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
@@ -68,6 +69,7 @@ const ChallengeContent = () => {
             artist={current_level.artist}
             painting={current_level.solution}
             colors={current_level.colors}
+            setCurrBackground = {setCurrBackground}
           />
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
             <div className="flex justify-end space-x-4 mt-4 mr-4">

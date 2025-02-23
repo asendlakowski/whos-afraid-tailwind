@@ -12,12 +12,15 @@ interface RecreateSectionProps {
   title: string;
   artist: string;
   colors: string[];
+  setCurrBackground: (color: string) => void;
 }
 
 const RecreateSection = (props: RecreateSectionProps) => {
-  const { paintingWidth, paintingHeight, title, artist, painting, colors } =
+  const { paintingWidth, paintingHeight, title, artist, painting, colors, setCurrBackground } =
     props;
   const [showHint, setShowHint] = useState(false);
+  const [showBackgroundColors, setShowBackgroundColors] = useState(false);
+  const colorArray = ["#CDD77C", "#315724", "#010101", "#5D8AA1", "#3239FB", "#9E779D", "#FF5260", "#FE868D", "#FF999A", "#BEBEBE"];
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [hexCopiedIndex, hexSetCopiedIndex] = useState<number | null>(null);
 
@@ -164,10 +167,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
                 <span>
                   {hexCopiedIndex === i ? <p className="font-blinker text-[#333333] font-rb font-semibold">Copied!</p> : <p className="font-blinker text-[#333333] font-rb font-semibold">{c}</p>}
                 </span>
-                {/* <div className="w-[18px] h-[18px] bg-[${c}] rounded-sm" style={{ backgroundColor: c }} /> */}
-                {/* <p className="text-[#333333] font-rb font-semibold">{c}</p> */}
               </div>
-              {/* {hexIsCopied ? "Copied!" : "Copy Text"} */}
               </button>
             );
           })}
@@ -193,7 +193,30 @@ const RecreateSection = (props: RecreateSectionProps) => {
             <Image src="/questionbox.svg" alt="hint" width={38} height={38} />
           </button>
         </div>
-        <Image src="painticon.svg" alt="color swap" width={38} height={38} />
+        <div className="relative">
+          {showBackgroundColors && (
+            <div className="absolute bottom-full left-[-20%] -translate-x-1/2 mb-2  px-3 pr-0 py-2 bg-[#CBCDFE] text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
+              <div className="flex space-x-1">
+              {colorArray.map((color, index) => (
+                 <button
+                    key={index}
+                    className="flex items-center rounded-full"
+                    style={{ backgroundColor: color }} // Set the button color dynamically
+                    onClick={() => setCurrBackground(color)} // Change the background color when clicked
+                  >
+                 <span className="w-[18px] h-[18px] rounded-full hover:border-2" />
+                </button>
+              ))}
+              <span
+                className="w-[18px] h-[18px] rounded-sm"
+              />
+              </div>
+            </div>
+          )}
+          <button onClick={() => setShowBackgroundColors(!showBackgroundColors)}>
+            <Image src="/painticon.svg" alt="hint" width={38} height={38} />
+          </button>
+        </div>
       </div>
     </div>
   );
