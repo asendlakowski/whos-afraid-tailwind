@@ -115,7 +115,7 @@ const compute_color_diff = (user_box: Box, soln_box: Box) => {
 };
 
 const compute_diff = (user_boxes: Box[], soln_boxes: Box[]) => {
-  let diff_subsections = soln_boxes.length;
+  const diff_subsections = soln_boxes.length;
   const local_diffs: number[] = [];
   const rounded_pattern = /rounded-(?:\[[^\]]*\]|full)/;
 
@@ -143,7 +143,7 @@ const compute_diff = (user_boxes: Box[], soln_boxes: Box[]) => {
         continue;
       }
 
-      const regex = /#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})(?=\b)/g;
+      /* const regex = /#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})(?=\b)/g;
       const colors = user_box.classname.match(regex);
       const soln_colors = soln_box.classname.match(regex);
 
@@ -177,8 +177,8 @@ const compute_diff = (user_boxes: Box[], soln_boxes: Box[]) => {
           }
         }
 
-        return diff;
-      } else if (is_both_circles || is_both_not_circles) {
+        return diff; */
+      if (is_both_circles || is_both_not_circles) {
         if (is_both_circles && is_same_circle(user_box, soln_box)) {
           soln_box.is_accounted_for = true;
           user_box.is_accounted_for = true;
