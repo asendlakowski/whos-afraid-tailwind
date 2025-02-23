@@ -14,7 +14,7 @@ const Hamburger = ({ currBackground }: { currBackground: string }) => {
   // console.log(currBackground);
 
   return (
-    <div>
+    <div className="z-50">
       <button
         onClick={() => setMenuIsOpen(!menuIsOpen)}
         className="inline-flex justify-center w-full rounded-md px-4 py-2 text-sm font-medium focus:outline-none hover:text-opacity-75"
@@ -22,7 +22,7 @@ const Hamburger = ({ currBackground }: { currBackground: string }) => {
         <svg
           className="w-6 h-6"
           fill="none"
-          stroke="currentColor"
+          stroke="white"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -46,38 +46,37 @@ const Hamburger = ({ currBackground }: { currBackground: string }) => {
         </svg>
       </button>
       {menuIsOpen && (
-         <div 
-          className="absolute origin-top-right fixed mt-2 w-56 py-1 shadow-lg bg-white bg-opacity-75 z-[999]" 
-          style={{ backgroundColor: currBackground}}
+        <div
+          className="absolute origin-top-right fixed mt-2 w-56 py-1 shadow-lg bg-white bg-opacity-75 z-[999]"
+          style={{ backgroundColor: currBackground }}
         >
-        <div className="w-full">
-        {choices.map((ch) => {
-            return (
-              <div key={ch.data} style={{backgroundColor: currBackground}}>
-              <Link
-                key={ch.data}
-                onClick={() => setMenuIsOpen(false)}
-                href={
-                  ch.data === "-1"
-                    ? { pathname: "/home" }
-                    : {
-                        pathname: "/challenge",
-                        query: { level: ch.data },
-                      }
-                }
-                
-                className="block px-4 py-3 text-med font-blinker hover:font-bold bg-white bg-opacity-75"
-                style={{
-                  color: currBackground,
-                  marginBottom: 0
-                }}
-              >
-                {ch.name}
-              </Link>
-              </div>
-            );
-          })}
-        </div>
+          <div className="w-full">
+            {choices.map((ch) => {
+              return (
+                <div key={ch.data} style={{ backgroundColor: currBackground }}>
+                  <Link
+                    key={ch.data}
+                    onClick={() => setMenuIsOpen(false)}
+                    href={
+                      ch.data === "-1"
+                        ? { pathname: "/home" }
+                        : {
+                            pathname: "/challenge",
+                            query: { level: ch.data },
+                          }
+                    }
+                    className="block px-4 py-3 text-med font-blinker hover:font-bold bg-white bg-opacity-75"
+                    style={{
+                      color: currBackground,
+                      marginBottom: 0,
+                    }}
+                  >
+                    {ch.name}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
