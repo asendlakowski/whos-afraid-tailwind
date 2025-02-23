@@ -3,9 +3,10 @@ import { level_name } from "./level_type";
 export const level1: level_name = {
   title: "Who's Afraid of Red, Yellow, and Blue I",
   artist: "Barnett Newman",
-  start: `<div class="w-screen h-screen bg-[#cd0000]">\n\t<div/>\n\t<div/>\n</div>`,
+  start: `<div class="canvas w-screen h-screen bg-[#cd0000]">\n\t<div/>\n\t<div/>\n</div>`,
   solution: (
-    <div className="w-[300px] h-[420px] bg-[#cd0000] flex flex-row justify-between">
+
+    <div className="soln_canvas w-[300px] h-[420px] bg-[#cd0000] flex flex-row justify-between">
       <div className="w-3 h-full bg-[#02007f]"></div>
       <div className="w-1 h-full bg-[#fec800]"></div>
     </div>
