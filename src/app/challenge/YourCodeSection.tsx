@@ -4,11 +4,12 @@ import PercentBar from "./PercentBar";
 
 interface YourCodeSectionProps {
   frame: ReactNode;
+  funfact: string;
   onSubmitClicked: () => void;
 }
 
 const YourCodeSection = (props: YourCodeSectionProps) => {
-  const { frame } = props;
+  const { frame, funfact } = props;
   return (
     <div className="bg-[#FFFFFFC0] w-full h-full rounded-xl flex flex-col justify-center items-center gap-4">
       <p className="text-primary-blue font-rb font-bold text-2xl text-center">
@@ -33,8 +34,7 @@ const YourCodeSection = (props: YourCodeSectionProps) => {
           Did you Know?
         </p>
         <p className="text-sm text-primary-blue px-4 text-center">
-          Theres a pretty fun fact about this painting out there but we have not
-          added it in yet!
+          {funfact}
         </p>
       </div>
     </div>

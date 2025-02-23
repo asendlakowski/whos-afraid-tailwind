@@ -7,6 +7,7 @@ export interface level_name {
   solution: ReactNode;
   solution_str: string;
   svg_name: string;
+  funfact: string;
   hint: string;
   colors: string[];
   w: number;

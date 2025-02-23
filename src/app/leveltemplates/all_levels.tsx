@@ -15,6 +15,8 @@ export const level1: level_name = {
   <div class="w-1 h-full bg-[#fec800]"></div>
 </div>`,
   svg_name: "/paintings/whos_afraid_of_ryb.svg",
+  funfact:
+    'This painting is the first painting of a trio created by this painter. The third painting, "Who\'s Afraid of Red, Yellow and Blue III" was famously vandalized with a box cutter by someone with a grudge against abstract art.',
   hint: "string",
   colors: ["#CD0000", "#02007F", "#FEC800"],
   w: 300,
@@ -31,6 +33,8 @@ export const level2: level_name = {
   ),
   solution_str: `<div class="w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>`,
   svg_name: "/paintings/mikatajima.png",
+  funfact:
+    'The artist, Mika Tajima, sometimes title their works in a deliberately open or minimal way (hence "Unnamed"), allowing the audience to enjoy the painting for what it is without being swayed by the title.',
   hint: "string",
   colors: [
     "#0B111B",
@@ -77,6 +81,8 @@ export const level3: level_name = {
   </div>
 </div>`,
   svg_name: "/paintings/swan_no_17.svg",
+  funfact:
+    '"The Swan No. 17" is number 17 out of 24 oil paitings created by Hilma af Klint in her "The Swan" series. These paintings explored her passion for spirituality, mysticism, and unseen worlds. Interestingly, Klint believed her art was divinely inspired and kept her abstract works hidden during her lifetime, only revealing them when she felt the world was ready to understand their deeper, spiritual meaning.',
   hint: "string",
   colors: ["#A95139", "#DCD7CC", "#262427", "#D28C74", "#D5B651", "#5684C1"],
   w: 300,
@@ -106,7 +112,9 @@ export const level4: level_name = {
     <div class="w-56 h-6 bg-black rounded-full -mt-2"></div>
   </div>
 </div>`,
-  svg_name: "/paintings/Mad_Hatter.png",
+  svg_name: "/paintings/Mad_Hatter.svg",
+  funfact:
+    'Tarrant Hightopp, otherwise known as the Mad Hatter, is famously known for his whimsical nature and absurd riddles. During the 2010 movie rendition of "Alice in Wonderland", his role was acted out by none other than Johnny Depp',
   hint: "string",
   colors: ["#000000", "#1e3a8a", "#facc15"],
   w: 300,
@@ -145,6 +153,7 @@ export const level5: level_name = {
     </div>
 </div>`,
   svg_name: "/paintings/mondrian.svg",
+  funfact: 'Piet Mondrian\'s "Composition" works are a hallmark of his Neoplasticism style, where he used only primary colors, black, white, and grey arranged in a strict grid of vertical and horizontal lines. He believed that these simplified forms could reveal the universal order and balance of the cosmos, a revolutionary idea that continues to influence modern art and design',
   hint: "string",
   colors: ["#dee1e8", "#b6262b", "#203385", "#d9a948"],
   w: 300,
