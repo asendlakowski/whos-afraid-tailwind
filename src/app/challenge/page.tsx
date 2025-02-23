@@ -13,7 +13,6 @@ import { get_box_data, compute_diff } from "@/utils/BoxUtils";
 import Link from "next/link";
 import Hamburger from "./Hamburger";
 
-
 const ChallengeContent = () => {
   const searchParams = useSearchParams();
   const levelnum = searchParams.get("level");
@@ -26,10 +25,10 @@ const ChallengeContent = () => {
   const [displayModelSoln, setDisplayModelSoln] = useState<boolean>(false);
   const [recreateClosed, setRecreateClosed] = useState<boolean>(false);
 
-  /* const onSubmitClicked = () => {
+  const onClickHandlePopup = () => {
     setIsCompleteModalOpen(true);
     console.log("printing to not error", displayModelSoln);
-  }; */
+  };
 
   const onSubmitClicked = () => {
     const iframe: HTMLIFrameElement = document.getElementById(
@@ -127,11 +126,10 @@ const ChallengeContent = () => {
         </div>
       ) : (
         <div
-          className={`grid w-screen h-screen gap-5 pt-10 px-5 pb-5 ease-in-out ${
-            recreateClosed
+          className={`grid w-screen h-screen gap-5 pt-10 px-5 pb-5 ease-in-out ${recreateClosed
               ? "grid-cols-[50px_minmax(0,3fr)_minmax(0,3fr)]"
               : "grid-cols-[minmax(0,2fr)_minmax(0,3fr)_minmax(0,3fr)]"
-          }`}
+            }`}
         >
           {recreateClosed ? (
             <div className="flex flex-col justify-start items-center w-full h-full gap-2">
@@ -208,7 +206,7 @@ const ChallengeContent = () => {
               />
             }
             funfact={current_level.funfact}
-            onSubmitClicked={onSubmitClicked}
+            onSubmitClicked={onClickHandlePopup}
           />
 
           <button
@@ -269,7 +267,7 @@ const ChallengeContent = () => {
                 pathname: "/challenge",
                 query: {
                   level: String(
-                    ((Number(levelnum) + 1) % levels.length).toString()
+                    ((Number(levelnum) + 1) % levels.length).toString(),
                   ),
                 },
               }}
