@@ -105,6 +105,7 @@ const ChallengeContent = () => {
               colors={current_level.colors}
               svg_name={current_level.svg_name}
               toggleLeftWindow={toggleLeftWindow}
+              infoURL={current_level.infolink}
             />
           )}
           <div className="bg-white w-full h-full opacity-75 rounded-xl">

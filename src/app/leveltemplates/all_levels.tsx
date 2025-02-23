@@ -21,6 +21,7 @@ export const level1: level_name = {
   colors: ["#CD0000", "#02007F", "#FEC800"],
   w: 300,
   h: 420,
+  infolink: "https://www.moma.org/artists/4285-barnett-newman",
 };
 
 export const level2: level_name = {
@@ -46,6 +47,7 @@ export const level2: level_name = {
   ],
   w: 300,
   h: 420,
+  infolink: "https://mikatajima.com/",
 };
 
 export const level3: level_name = {
@@ -85,6 +87,7 @@ export const level3: level_name = {
   colors: ["#A95139", "#DCD7CC", "#262427", "#D28C74", "#D5B651", "#5684C1"],
   w: 300,
   h: 300,
+  infolink: "https://hilmaafklint.se/",
 };
 
 export const level4: level_name = {
@@ -116,6 +119,7 @@ export const level4: level_name = {
   colors: ["#000000", "#1e3a8a", "#facc15"],
   w: 300,
   h: 300,
+  infolink: "https://www.alice-in-wonderland.net/",
 };
 
 export const level5: level_name = {
@@ -154,6 +158,7 @@ export const level5: level_name = {
   colors: ["#dee1e8", "#b6262b", "#203385", "#d9a948"],
   w: 300,
   h: 300,
+  infolink: "https://www.piet-mondrian.org/",
 };
 
 export const levels: level_name[] = [level1, level2, level3, level4, level5];
