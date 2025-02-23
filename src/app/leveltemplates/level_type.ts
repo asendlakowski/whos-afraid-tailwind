@@ -8,6 +8,7 @@ export interface level_name {
   solution_str: string;
   svg_name: string;
   funfact: string;
+  description: string;
   hint: string;
   colors: string[];
   w: number;
