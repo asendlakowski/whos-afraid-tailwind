@@ -20,6 +20,7 @@ const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
     overviewRulerLanes: 0,
   };
 
+
   return (
     <div className="flex flex-col items-center h-[30%] p-4">
       <Editor

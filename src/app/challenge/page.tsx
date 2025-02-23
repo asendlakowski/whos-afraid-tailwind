@@ -119,7 +119,7 @@ const ChallengeContent = () => {
                 reset
               </button>
               <button onClick={() => setFullScreen(false)}>
-                <Image src="Vector.svg" alt="fun fact" width={18} height={18} />
+                <Image src="Shrink.svg" alt="fun fact" width={18} height={18} />
               </button>
             </div>
             <MonacoEditor code={code} setCode={setCode} />
