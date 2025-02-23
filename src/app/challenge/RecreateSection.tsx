@@ -59,7 +59,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center my-2 overflow-y-scroll scrollbar-hide no-scrollbar">
+    <div className="flex flex-col justify-between items-center my-2 overflow-y-scroll">
       {/* Header Bar */}
       <div
         className="w-full flex flex-row justify-between items-center sticky top-0 z-50"
@@ -67,7 +67,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
       >
         <div className="flex flex-row gap-3 items-center">
           <div className="relative inline-block text-left">
-            <Hamburger />
+            <Hamburger currBackground={backgroundColor} />
           </div>
           <p className="text-white font-rb font-semibold text-lg">LEVELS</p>
         </div>
@@ -83,7 +83,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
       </div>
 
       {/* Rest of the section */}
-      <div className="flex flex-col gap-4 items-center">
+      <div className="flex flex-col gap-4 items-center overflow-y-scroll no-scrollbar">
         <p className="text-white font-rb font-bold text-2xl opacity-75">
           RECREATE THIS PIECE
         </p>

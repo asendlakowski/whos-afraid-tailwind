@@ -152,7 +152,7 @@ const ChallengeContent = () => {
         >
           {recreateClosed ? (
             <div className="flex flex-col justify-start items-center w-full h-full gap-2">
-              <Hamburger />
+              <Hamburger currBackground={currBackground}/>
               <button
                 onClick={toggleLeftWindow}
                 className="inline-flex justify-center w-full rounded-md px-3 py-1 text-white hover:bg-[#D7E1E8] hover:text-secondary-blue"
