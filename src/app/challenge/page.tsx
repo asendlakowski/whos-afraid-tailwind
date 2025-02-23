@@ -32,7 +32,7 @@ const ChallengeContent = () => {
 
   const onSubmitClicked = () => {
     const iframe: HTMLIFrameElement = document.getElementById(
-      "user_code",
+      "user_code"
     ) as HTMLIFrameElement;
 
     if (!iframe) {
@@ -48,7 +48,7 @@ const ChallengeContent = () => {
     const recurse_through_tree = (
       root: Element,
       canvas: Element,
-      box_list: Box[],
+      box_list: Box[]
     ) => {
       if (!root.children) {
         return;
@@ -130,7 +130,7 @@ const ChallengeContent = () => {
             recreateClosed
               ? "grid-cols-[50px_minmax(0,3fr)_minmax(0,3fr)]"
               : "grid-cols-[minmax(0,2fr)_minmax(0,3fr)_minmax(0,3fr)]"
-            }`}
+          }`}
         >
           {recreateClosed ? (
             <div className="flex flex-col justify-start items-center w-full h-full gap-2">
@@ -180,7 +180,7 @@ const ChallengeContent = () => {
                 <Image src="Vector.svg" alt="fun fact" width={18} height={18} />
               </button>
             </div>
-            <MonacoEditor code={current_level.start} setCode={setCode} />
+            <MonacoEditor code={code} setCode={setCode} />
           </div>
           <YourCodeSection
             frame={
@@ -268,7 +268,7 @@ const ChallengeContent = () => {
                 pathname: "/challenge",
                 query: {
                   level: String(
-                    ((Number(levelnum) + 1) % levels.length).toString(),
+                    ((Number(levelnum) + 1) % levels.length).toString()
                   ),
                 },
               }}
