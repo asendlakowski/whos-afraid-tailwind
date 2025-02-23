@@ -1,4 +1,5 @@
 import { Box } from "@/utils/BoxType";
+import { ClientPageRoot } from "next/dist/client/components/client-page";
 
 const get_box_data = (html_elem: Element, canvas: Element) => {
   const computed_styles = window.getComputedStyle(html_elem);
@@ -31,31 +32,43 @@ const get_box_data = (html_elem: Element, canvas: Element) => {
   const coord_info = bound_box[0];
   const canvas_coords = canvas_bound_box[0];
 
+  const box_top_left = {
+    x: Math.min(coord_info.left, coord_info.right) - canvas_coords.left,
+    y: Math.min(coord_info.top, coord_info.bottom) - canvas_coords.top,
+  };
+
+  const box_bottom_right = {
+    x: Math.max(coord_info.left, coord_info.right) - canvas_coords.left,
+    y: Math.max(coord_info.top, coord_info.bottom) - canvas_coords.top,
+  };
+
   const box: Box = {
+    html_elem: html_elem,
+    classname: html_elem.className,
     is_accounted_for: false,
-    top_left: {
-      x: Math.min(coord_info.left, coord_info.right) - canvas_coords.left,
-      y: Math.min(coord_info.top, coord_info.bottom) - canvas_coords.top,
+
+    top_left: box_top_left,
+    bottom_right: box_bottom_right,
+
+    mid_top: {
+      x: (box_top_left.x + box_bottom_right.x) / 2,
+      y: box_top_left.y,
     },
 
-    bottom_right: {
-      x: Math.max(coord_info.left, coord_info.right) - canvas_coords.left,
-      y: Math.max(coord_info.top, coord_info.bottom) - canvas_coords.top,
+    mid_bottom: {
+      x: (box_top_left.x + box_bottom_right.x) / 2,
+      y: box_bottom_right.y,
     },
-    /* top_left: {
-      x: coord_info.left - canvas_coords.left,
-      y: coord_info.top - canvas_coords.top,
-    }, */
 
-    /* bottom_right: {
-      x: canvas_coords.right - coord_info.right,
-      y: canvas_coords.bottom - coord_info.bottom,
-    }, */
+    mid_left: {
+      x: box_top_left.x,
+      y: (box_top_left.y + box_bottom_right.y) / 2,
+    },
 
-    /* bottom_right: {
-      x: coord_info.right - canvas_coords.right,
-      y: coord_info.bottom - canvas_coords.bottom,
-    }, */
+    mid_right: {
+      x: box_bottom_right.x,
+      y: (box_top_left.y + box_bottom_right.y) / 2,
+    },
 
     width: coord_info.right - coord_info.left,
     height: coord_info.bottom - coord_info.top,
@@ -77,41 +90,88 @@ const is_both_close_by = (user_box: Box, soln_box: Box) => {
   );
 };
 
+const is_same_circle = (user_box: Box, soln_box: Box) => {
+  return (
+    soln_box.mid_top.x == user_box.mid_top.x &&
+    soln_box.mid_top.y == user_box.mid_top.y &&
+    soln_box.mid_bottom.x == user_box.mid_bottom.x &&
+    soln_box.mid_bottom.y == user_box.mid_bottom.y &&
+    soln_box.mid_left.x == user_box.mid_left.x &&
+    soln_box.mid_left.y == user_box.mid_left.y &&
+    soln_box.mid_right.x == user_box.mid_right.x &&
+    soln_box.mid_right.y == user_box.mid_right.y
+  );
+};
+
+const compute_color_diff = (user_box: Box, soln_box: Box) => {
+  const rgb_denominator = 255;
+  const red_diff =
+    (soln_box.red / rgb_denominator - user_box.red / rgb_denominator) ** 2;
+  const green_diff =
+    (soln_box.green / rgb_denominator - user_box.green / rgb_denominator) ** 2;
+  const blue_diff =
+    (soln_box.blue / rgb_denominator - user_box.blue / rgb_denominator) ** 2;
+
+  return Math.sqrt(red_diff + green_diff + blue_diff);
+};
+
 const compute_diff = (user_boxes: Box[], soln_boxes: Box[]) => {
   const diff_subsections = soln_boxes.length;
-
   const local_diffs: number[] = [];
+  const rounded_pattern = /rounded-(?:\[[^\]]*\]|full)/;
 
   for (let i = 0; i < diff_subsections; i++) {
     const soln_box = soln_boxes[i];
     for (let j = 0; j < user_boxes.length; j++) {
       const user_box = user_boxes[j];
 
-      if (is_both_close_by(user_box, soln_box)) {
-        soln_box.is_accounted_for = true;
-        user_box.is_accounted_for = true;
+      const is_both_circles =
+        rounded_pattern.test(user_box.classname) &&
+        rounded_pattern.test(soln_box.classname);
 
-        let local_diff = 0.0;
-        const rgb_denominator = 255;
+      const is_both_not_circles =
+        !rounded_pattern.test(user_box.classname) &&
+        !rounded_pattern.test(soln_box.classname);
 
-        const red_diff =
-          (soln_box.red / rgb_denominator - user_box.red / rgb_denominator) **
-          2;
-        const green_diff =
-          (soln_box.green / rgb_denominator -
-            user_box.green / rgb_denominator) **
-          2;
-        const blue_diff =
-          (soln_box.blue / rgb_denominator - user_box.blue / rgb_denominator) **
-          2;
+      const is_one_missing_circle =
+        rounded_pattern.test(user_box.classname) &&
+        !rounded_pattern.test(soln_box.classname);
+      const is_one_missing_solution =
+        !rounded_pattern.test(user_box.classname) &&
+        rounded_pattern.test(soln_box.classname);
 
-        const color_diff = Math.sqrt(red_diff + green_diff + blue_diff);
+      if (is_one_missing_circle || is_one_missing_solution) {
+        continue;
+      }
 
-        if (color_diff > 0.0) {
-          local_diff += 1 / diff_subsections / 2;
+      if (is_both_circles || is_both_not_circles) {
+        if (is_both_circles && is_same_circle(user_box, soln_box)) {
+          soln_box.is_accounted_for = true;
+          user_box.is_accounted_for = true;
+
+          let local_diff = 0.0;
+          const color_diff = compute_color_diff(user_box, soln_box);
+
+          if (color_diff > 0.0) {
+            local_diff += 1 / diff_subsections / 2;
+          }
+
+          local_diffs.push(local_diff);
         }
 
-        local_diffs.push(local_diff);
+        if (is_both_not_circles && is_both_close_by(user_box, soln_box)) {
+          soln_box.is_accounted_for = true;
+          user_box.is_accounted_for = true;
+
+          let local_diff = 0.0;
+          const color_diff = compute_color_diff(user_box, soln_box);
+
+          if (color_diff > 0.0) {
+            local_diff += 1 / diff_subsections / 2;
+          }
+
+          local_diffs.push(local_diff);
+        }
       }
     }
   }

@@ -17,7 +17,7 @@ export const level1: level_name = {
   svg_name: "/paintings/whos_afraid_of_ryb.svg",
   funfact:
     'This painting is the first painting of a trio created by this painter. The third painting, "Who\'s Afraid of Red, Yellow and Blue III" was famously vandalized with a box cutter by someone with a grudge against abstract art.',
-  hint: "string",
+  hint: "In our solution, the blue strip is width w-3 and the yellow strip is w-1.",
   colors: ["#CD0000", "#02007F", "#FEC800"],
   w: 300,
   h: 420,
@@ -57,7 +57,7 @@ export const level2: level_name = {
   svg_name: "/paintings/mondrian.svg",
   funfact:
     'Piet Mondrian\'s "Composition" works are a hallmark of his Neoplasticism style, where he used only primary colors, black, white, and grey arranged in a strict grid of vertical and horizontal lines. He believed that these simplified forms could reveal the universal order and balance of the cosmos, a revolutionary idea that continues to influence modern art and design',
-  hint: "string",
+  hint: "In our solution, we use grid, grid-cols, and grid-rows to format the squares and rectangles.",
   colors: ["#dee1e8", "#b6262b", "#203385", "#d9a948"],
   w: 300,
   h: 300,
@@ -89,7 +89,7 @@ export const level3: level_name = {
   svg_name: "/paintings/Mad_Hatter.svg",
   funfact:
     'Tarrant Hightopp, otherwise known as the Mad Hatter, is famously known for his whimsical nature and absurd riddles. During the 2010 movie rendition of "Alice in Wonderland", his role was acted out by none other than Johnny Depp',
-  hint: "string",
+  hint: '"relative" and "absolute" are helpful classes that allow you to position elements relative to other elements or to the page.',
   colors: ["#000000", "#1e3a8a", "#facc15"],
   w: 300,
   h: 300,
