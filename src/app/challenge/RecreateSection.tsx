@@ -10,11 +10,19 @@ interface RecreateSectionProps {
   title: string;
   artist: string;
   colors: string[];
+  toggleLeftWindow: () => void;
 }
 
 const RecreateSection = (props: RecreateSectionProps) => {
-  const { paintingWidth, paintingHeight, title, artist, painting, colors } =
-    props;
+  const {
+    paintingWidth,
+    paintingHeight,
+    title,
+    artist,
+    painting,
+    colors,
+    toggleLeftWindow,
+  } = props;
   const [showHint, setShowHint] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
@@ -86,13 +94,15 @@ const RecreateSection = (props: RecreateSectionProps) => {
             LEVELS
           </p>
         </div>
-        <Image
-          src="xicon.svg"
-          alt="x icon"
-          width={30}
-          height={30}
-          className="opacity-75"
-        />
+        <button onClick={toggleLeftWindow}>
+          <Image
+            src="xicon.svg"
+            alt="x icon"
+            width={30}
+            height={30}
+            className="opacity-75"
+          />
+        </button>
       </div>
 
       {/* Rest of the section */}
