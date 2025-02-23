@@ -4,6 +4,7 @@ import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
 // import Link from "next/link";
 import Hamburger from "./Hamburger";
+import Link from "next/link";
 
 interface RecreateSectionProps {
   paintingWidth: number;
@@ -14,6 +15,7 @@ interface RecreateSectionProps {
   colors: string[];
   svg_name: string;
   toggleLeftWindow: () => void;
+  infoURL: string;
 }
 
 const RecreateSection = (props: RecreateSectionProps) => {
@@ -25,6 +27,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
     painting,
     colors,
     toggleLeftWindow,
+    infoURL,
   } = props;
   const [showHint, setShowHint] = useState(false);
   const [originalImage, setOriginalImage] = useState(false);
@@ -69,7 +72,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
         <p className="text-white font-rb font-bold text-2xl opacity-75">
           RECREATE THIS PIECE
         </p>
-        
+
         <div className="bg-[#FFFFFF40] border-4 border-[#FFFFFF80] rounded-xl relative">
           <button
             className="absolute top-2 right-2 bg-white/25 px-3 py-1 text-sm rounded-md shadow-md z-10 m-2"
@@ -77,13 +80,13 @@ const RecreateSection = (props: RecreateSectionProps) => {
           >
             {originalImage ? "See solution" : "See original image"}
             <Image
-                className="inline ml-2"
-                src="eye.svg"
-                alt="original"
-                height={20}
-                width={20}
-                priority
-              />
+              className="inline ml-2"
+              src="eye.svg"
+              alt="original"
+              height={20}
+              width={20}
+              priority
+            />
           </button>
 
           <div
@@ -103,7 +106,6 @@ const RecreateSection = (props: RecreateSectionProps) => {
             )}
           </div>
         </div>
-
 
         <div className="flex flex-col gap-2">
           <p className="text-white font-rb font-bold text-lg opacity-75 text-center max-w-[320px]">
@@ -155,7 +157,21 @@ const RecreateSection = (props: RecreateSectionProps) => {
 
       {/* Bottom Buttoms */}
       <div className="flex flex-row gap-5">
-        <Image src="map.svg" alt="fun fact" width={38} height={38} />
+        <Link
+          href={infoURL}
+          className="flex justify-center items-center bg-[#ffffff60] w-[38px] h-[38px] rounded-lg border-[1.5px] border-white"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="white"
+            className="bi bi-info-circle-fill "
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2" />
+          </svg>
+        </Link>
         <div className="relative">
           {showHint && (
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-primary-purple text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">

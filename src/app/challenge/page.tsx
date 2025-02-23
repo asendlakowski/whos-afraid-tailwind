@@ -6,6 +6,10 @@ import YourCodeSection from "./YourCodeSection";
 import Image from "next/image";
 import { levels } from "../leveltemplates/all_levels";
 import { useSearchParams } from "next/navigation";
+
+import type { Box } from "@/utils/BoxType";
+import { get_box_data, compute_diff } from "@/utils/BoxUtils";
+
 import Link from "next/link";
 import Hamburger from "./Hamburger";
 
@@ -21,9 +25,64 @@ const ChallengeContent = () => {
   const [displayModelSoln, setDisplayModelSoln] = useState<boolean>(false);
   const [recreateClosed, setRecreateClosed] = useState<boolean>(false);
 
-  const onSubmitClicked = () => {
+  const onClickHandlePopup = () => {
     setIsCompleteModalOpen(true);
     console.log("printing to not error", displayModelSoln);
+  };
+
+  const onSubmitClicked = () => {
+    const iframe: HTMLIFrameElement = document.getElementById(
+      "user_code",
+    ) as HTMLIFrameElement;
+
+    if (!iframe) {
+      throw new Error("Could not get user code iframe");
+    }
+
+    const user_root =
+      iframe.contentDocument!.getElementsByClassName("canvas")[0];
+
+    /* mark the user code with "user " classname extension
+     * Made it a nested function to avoid passing in more params
+     */
+    const recurse_through_tree = (
+      root: Element,
+      canvas: Element,
+      box_list: Box[],
+    ) => {
+      if (!root.children) {
+        return;
+      }
+
+      const rootClassName = root.className;
+      if (rootClassName) {
+        if (rootClassName.includes("bg-")) {
+          const box = get_box_data(root, canvas);
+          box_list.push(box);
+        }
+      }
+
+      for (let i = 0; i < root.children.length; i++) {
+        const curr_elem = root.children[i];
+        recurse_through_tree(curr_elem, canvas, box_list);
+      }
+    };
+
+    const user_boxes: Box[] = [];
+    recurse_through_tree(user_root, user_root, user_boxes);
+
+    const soln_root = document.getElementsByClassName("soln_canvas");
+
+    if (soln_root.length != 1) {
+      console.log(soln_root);
+      throw new Error("There is more than one canvas element");
+    }
+
+    const soln_boxes: Box[] = [];
+    recurse_through_tree(soln_root[0], soln_root[0], soln_boxes);
+
+    const diff = compute_diff(user_boxes, soln_boxes);
+    console.log("diff: ", diff);
   };
 
   useEffect(() => {
@@ -71,7 +130,7 @@ const ChallengeContent = () => {
             recreateClosed
               ? "grid-cols-[50px_minmax(0,3fr)_minmax(0,3fr)]"
               : "grid-cols-[minmax(0,2fr)_minmax(0,3fr)_minmax(0,3fr)]"
-          }`}
+            }`}
         >
           {recreateClosed ? (
             <div className="flex flex-col justify-start items-center w-full h-full gap-2">
@@ -105,6 +164,7 @@ const ChallengeContent = () => {
               colors={current_level.colors}
               svg_name={current_level.svg_name}
               toggleLeftWindow={toggleLeftWindow}
+              infoURL={current_level.infolink}
             />
           )}
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
@@ -120,12 +180,13 @@ const ChallengeContent = () => {
                 <Image src="Vector.svg" alt="fun fact" width={18} height={18} />
               </button>
             </div>
-            <MonacoEditor code={code} setCode={setCode} />
+            <MonacoEditor code={current_level.start} setCode={setCode} />
           </div>
           <YourCodeSection
             frame={
               <iframe
                 title="output"
+                id="user_code"
                 className={`bg-black w-[${current_level.w}px] h-[${current_level.h}px] m-2`}
                 srcDoc={`
                 <!DOCTYPE html>
@@ -146,8 +207,15 @@ const ChallengeContent = () => {
               />
             }
             funfact={current_level.funfact}
-            onSubmitClicked={onSubmitClicked}
+            onSubmitClicked={onClickHandlePopup}
           />
+
+          <button
+            className="absolute bottom-10 right-48 rounded-md h-auto py-2 px-4 w-auto bg-black text-white"
+            onClick={onSubmitClicked}
+          >
+            Submit
+          </button>
         </div>
       )}
       {isCompleteModalOpen && (
@@ -200,7 +268,7 @@ const ChallengeContent = () => {
                 pathname: "/challenge",
                 query: {
                   level: String(
-                    ((Number(levelnum) + 1) % levels.length).toString()
+                    ((Number(levelnum) + 1) % levels.length).toString(),
                   ),
                 },
               }}
