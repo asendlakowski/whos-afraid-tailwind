@@ -293,7 +293,10 @@ const ChallengeContent = () => {
                   ),
                 },
               }}
-              onClick={() => setIsCompleteModalOpen(false)}
+              onClick={() => {
+                setIsCompleteModalOpen(false);
+                setPercentAcc(0);
+              }}
             >
               <svg
                 width="118"

@@ -3,7 +3,7 @@ import { level_name } from "./level_type";
 export const level1: level_name = {
   title: "Who's Afraid of Red, Yellow, and Blue I",
   artist: "Barnett Newman",
-  start: `<div class="canvas w-screen h-screen bg-[#cd0000]">\n\t<div/>\n\t<div/>\n</div>`,
+  start: `<div class="canvas w-screen h-screen bg-[#cd0000]">\n\t<div></div>\n\t<div></div>\n</div>`,
   solution: (
     <div className="soln_canvas w-[300px] h-[420px] bg-[#cd0000] flex flex-row justify-between">
       <div className="w-3 h-full bg-[#02007f]"></div>
@@ -31,7 +31,7 @@ export const level1: level_name = {
 export const level2: level_name = {
   title: "Composition",
   artist: "Piet Mondrian",
-  start: '<div class="canvas w-screen h-screen bg-white">\n</div>',
+  start: '<div class="canvas w-screen h-screen bg-white grid">\n</div>',
   solution: (
     <div className="soln_canvas w-[300px] h-[300px] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
       <div className="bg-[#b6262b]" />
@@ -46,7 +46,7 @@ export const level2: level_name = {
       </div>
     </div>
   ),
-  solution_str: `<canvas div class="w-screen h-screen bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
+  solution_str: `<div class="canvas w-screen h-screen bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
     <div class="bg-[#b6262b]"></div>
     <div class="bg-[#dee1e8]"></div>
     <div class="bg-[#dee1e8]"></div>
@@ -60,10 +60,11 @@ export const level2: level_name = {
 </div>`,
   svg_name: "/paintings/mondrian.svg",
   description:
-    "Using grid, grid-cols, and grid-rows are extremely helpful when formatting ",
+    'Grid is a powerful layout system that allows you to define the rows and columns of a grid. Use grid, grid-cols, and grid-rows to format squares and rectangles in a way that recreates "Composition". \
+    In some cases, you may want a single element to span multiple rows or columns in your grid. To achieve this with tailwind you can use col-span and row-span.',
   funfact:
     'Piet Mondrian\'s "Composition" works are a hallmark of his Neoplasticism style, where he used only primary colors, black, white, and grey arranged in a strict grid of vertical and horizontal lines. He believed that these simplified forms could reveal the universal order and balance of the cosmos, a revolutionary idea that continues to influence modern art and design',
-  hint: "In our solution, we use grid, grid-cols, and grid-rows to format the squares and rectangles.",
+  hint: "In our solution, we use row-span-2 to make elements take up a span of two rows instead of just one.",
   colors: ["#dee1e8", "#b6262b", "#203385", "#d9a948"],
   w: 300,
   h: 300,
@@ -73,7 +74,7 @@ export const level2: level_name = {
 export const level3: level_name = {
   title: "The Mad Hatter",
   artist: "Tarrant Hightopp",
-  start: '<div class="canvas w-screen h-screen">\n</div>',
+  start: '<div class="canvas w-screen h-screen bg-white">\n</div>',
   solution: (
     <div className="soln_canvas w-[300px] h-[300px] bg-[#1e3a8a] relative flex items-center justify-center">
       <div className="flex flex-col items-center">
@@ -94,7 +95,7 @@ export const level3: level_name = {
 </div>`,
   svg_name: "/paintings/Mad_Hatter.svg",
   description:
-    "The relative and absolute classes are helpfposition elements relative to other elements or to the page.",
+    "The 'relative' and 'absolute' classes are helpful when positioning elements relative to other elements or the page. 'relative' positions an element based on its normal flow, while 'absolute' positions it relative to the nearest positioned ancestor or the viewport.",
   funfact:
     'Tarrant Hightopp, otherwise known as the Mad Hatter, is famously known for his whimsical nature and absurd riddles. During the 2010 movie rendition of "Alice in Wonderland", his role was acted out by none other than Johnny Depp',
   hint: "Our solution uses transform and translate classes to position the yellow element.",
@@ -107,7 +108,7 @@ export const level3: level_name = {
 export const level4: level_name = {
   title: "The Swan No. 17",
   artist: "Hilma Af Klint",
-  start: '<div class="canvas w-screen h-screen">\n</div>',
+  start: '<div class="canvas w-screen h-screen bg-white">\n</div>',
   solution: (
     <div className="soln_canvas w-[300px] h-[300px] bg-[#A95139] relative flex items-center justify-center">
       <div className="w-[160px] h-[160px] bg-[#5684C1] rounded-full"></div>
@@ -135,10 +136,11 @@ export const level4: level_name = {
   </div>
 </div>`,
   svg_name: "/paintings/swan_no_17.svg",
-  description: "",
+  description:
+    "The 'rounded' utility in Tailwind applies border-radius for rounded corners, where 'rounded-l' rounds only the left side, and 'rounded-r' rounds only the right side, allowing for precise corner styling. ",
   funfact:
     '"The Swan No. 17" is number 17 out of 24 oil paitings created by Hilma af Klint in her "The Swan" series. These paintings explored her passion for spirituality, mysticism, and unseen worlds. Interestingly, Klint believed her art was divinely inspired and kept her abstract works hidden during her lifetime, only revealing them when she felt the world was ready to understand their deeper, spiritual meaning.',
-  hint: "string",
+  hint: "Use flexbox centering to position the main blue circle, layer absolute divs for overlapping elements",
   colors: ["#A95139", "#DCD7CC", "#262427", "#D28C74", "#D5B651", "#5684C1"],
   w: 300,
   h: 300,
@@ -148,16 +150,17 @@ export const level4: level_name = {
 export const level5: level_name = {
   title: "Unnamed",
   artist: "Mika Tajima",
-  start: `<div class="canvas w-screen h-screen">\n</div>`,
+  start: `<div class="canvas w-screen h-screen bg-white">\n</div>`,
   solution: (
     <div className="soln_canvas w-[300px] h-[420px] bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>
   ),
   solution_str: `<div class="canvas w-screen h-screen bg-gradient-to-b from-[#0B111B] via-[#00275A] via-[#01285C] via-[#01113D] via-[#002759] via-[#01242F] to-[#516F6B] flex items-center justify-center"></div>`,
   svg_name: "/paintings/mikatajima.png",
-  description: "",
+  description:
+    "Gradient is a unique tailwind feature that allows you to transition between two or more colors. bg-gradient-to-b is a class that creates a background gradient that moves from top to bottom.",
   funfact:
     'The artist, Mika Tajima, sometimes title their works in a deliberately open or minimal way (hence "Unnamed"), allowing the audience to enjoy the painting for what it is without being swayed by the title.',
-  hint: "string",
+  hint: "Use from, via, and to to define the flow of colors in a gradient: from sets the starting color, via adds a middle transition, and to sets the ending color.",
   colors: [
     "#0B111B",
     "#00275A",
