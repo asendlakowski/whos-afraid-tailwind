@@ -54,18 +54,36 @@ const Home = () => {
         </div>
       </nav>
       <div className="w-full ">
-        <div className="font-blinker text-[#3239FB] flex justify-center text-5xl">
+        <div className="font-blinker text-[#3239FB] flex justify-center text-5xl mb-8">
           About Us
         </div>
-        <div className="font-blinker text-[#3239FB] flex justify-center text-5xl">
-            <ul>
-                <li>Owen</li>
-                <li>Alana</li>
-                <li>Kiara</li>
-                <li>Bill</li>
-                <li>Shannon</li>
-                <li>Jet</li>
-            </ul>
+        <div className="font-blinker text-[#3239FB] flex justify-center text-3xl text-center">
+          <ul className="flex flex-col gap-6">
+            <li className="flex flex-col justify-center items-center">
+              <p>Owen</p>
+              <p className="text-sm">Developer</p>
+            </li>
+            <li className="flex flex-col justify-center items-center">
+              <p>Alana</p>
+              <p className="text-sm">Developer</p>
+            </li>
+            <li className="flex flex-col justify-center items-center">
+              <p>Kiara</p>
+              <p className="text-sm">Developer</p>
+            </li>
+            <li className="flex flex-col justify-center items-center">
+              <p>Bill</p>
+              <p className="text-sm">Developer</p>
+            </li>
+            <li className="flex flex-col justify-center items-center">
+              <p>Shannon</p>
+              <p className="text-sm">Designer</p>
+            </li>
+            <li className="flex flex-col justify-center items-center">
+              <p>Jet</p>
+              <p className="text-sm">Developer</p>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
