@@ -6,8 +6,13 @@ import YourCodeSection from "./YourCodeSection";
 import Image from "next/image";
 import { levels } from "../leveltemplates/all_levels";
 import { useSearchParams } from "next/navigation";
+
 import type { Box } from "@/utils/BoxType";
 import { get_box_data, compute_diff } from "@/utils/BoxUtils";
+
+import Link from "next/link";
+import Hamburger from "./Hamburger";
+
 
 const ChallengeContent = () => {
   const searchParams = useSearchParams();
@@ -19,6 +24,7 @@ const ChallengeContent = () => {
   const [isCompleteModalOpen, setIsCompleteModalOpen] =
     useState<boolean>(false);
   const [displayModelSoln, setDisplayModelSoln] = useState<boolean>(false);
+  const [recreateClosed, setRecreateClosed] = useState<boolean>(false);
 
   /* const onSubmitClicked = () => {
     setIsCompleteModalOpen(true);
@@ -88,6 +94,17 @@ const ChallengeContent = () => {
     setCode(current_level.start);
   }, [current_level]);
 
+  const toggleLeftWindow = () => {
+    setRecreateClosed(!recreateClosed);
+  };
+
+  useEffect(() => {
+    if (displayModelSoln) {
+      setCode(current_level.solution_str);
+      setDisplayModelSoln(false);
+    }
+  }, [displayModelSoln]);
+
   return (
     <div className="w-screen h-screen bg-secondary-blue">
       {fullscreen ? (
@@ -109,15 +126,48 @@ const ChallengeContent = () => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-[2fr_3fr_3fr] w-screen h-screen gap-5 pt-10 px-5 pb-5">
-          <RecreateSection
-            paintingWidth={current_level.w}
-            paintingHeight={current_level.h}
-            title={current_level.title}
-            artist={current_level.artist}
-            painting={current_level.solution}
-            colors={current_level.colors}
-          />
+        <div
+          className={`grid w-screen h-screen gap-5 pt-10 px-5 pb-5 ease-in-out ${
+            recreateClosed
+              ? "grid-cols-[50px_minmax(0,3fr)_minmax(0,3fr)]"
+              : "grid-cols-[minmax(0,2fr)_minmax(0,3fr)_minmax(0,3fr)]"
+          }`}
+        >
+          {recreateClosed ? (
+            <div className="flex flex-col justify-start items-center w-full h-full gap-2">
+              <Hamburger />
+              <button
+                onClick={toggleLeftWindow}
+                className="inline-flex justify-center w-full rounded-md px-3 py-1 text-white hover:bg-[#D7E1E8] hover:text-secondary-blue"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                  className="bi bi-arrow-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <RecreateSection
+              paintingWidth={current_level.w}
+              paintingHeight={current_level.h}
+              title={current_level.title}
+              artist={current_level.artist}
+              painting={current_level.solution}
+              colors={current_level.colors}
+              svg_name={current_level.svg_name}
+              toggleLeftWindow={toggleLeftWindow}
+              infoURL={current_level.infolink}
+            />
+          )}
           <div className="bg-white w-full h-full opacity-75 rounded-xl">
             <div className="flex justify-end space-x-4 mt-4 mr-4">
               <button
@@ -157,6 +207,7 @@ const ChallengeContent = () => {
                 `}
               />
             }
+            funfact={current_level.funfact}
             onSubmitClicked={onSubmitClicked}
           />
 
@@ -190,7 +241,7 @@ const ChallengeContent = () => {
 
             <Image
               className="m-2 w-full max-h-[300px] mx-auto drop-shadow-2xl border-8 rounded-lg border-[#D4D4D4]"
-              src="/paintings/whos_afraid_of_ryb.svg"
+              src={current_level.svg_name}
               alt="level"
               height={50}
               width={50}
@@ -212,9 +263,20 @@ const ChallengeContent = () => {
                 model solution?
               </span>
             </div>
-            <button className="mt-4 px-4 py-2 bg-primary-blue text-white rounded-full font-blinker text-sm">
+            <Link
+              className="mt-4 px-4 py-2 bg-primary-blue text-white rounded-full font-blinker text-sm"
+              href={{
+                pathname: "/challenge",
+                query: {
+                  level: String(
+                    ((Number(levelnum) + 1) % levels.length).toString()
+                  ),
+                },
+              }}
+              onClick={() => setIsCompleteModalOpen(false)}
+            >
               next challenge ={">"}
-            </button>
+            </Link>
           </div>
         </div>
       )}

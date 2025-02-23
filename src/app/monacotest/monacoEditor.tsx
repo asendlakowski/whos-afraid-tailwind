@@ -28,6 +28,10 @@ const MonacoEditor: React.FC<MonacoEditorProps> = (props) => {
         value={code}
         options={options}
         onChange={(value) => setCode(value || "")}
+        // onMount={(editorInstance) => {
+        //   // Trigger the format document action when the editor is mounted.
+        //   editorInstance.getAction("editor.action.formatDocument")?.run();
+        // }}
       />
     </div>
   );
