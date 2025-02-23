@@ -145,6 +145,7 @@ const ChallengeContent = () => {
                 `}
               />
             }
+            funfact={current_level.funfact}
             onSubmitClicked={onSubmitClicked}
           />
         </div>
