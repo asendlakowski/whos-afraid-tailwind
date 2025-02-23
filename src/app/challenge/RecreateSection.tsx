@@ -12,6 +12,7 @@ interface RecreateSectionProps {
   title: string;
   artist: string;
   colors: string[];
+  svg_name: string;
   toggleLeftWindow: () => void;
 }
 
@@ -26,6 +27,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
     toggleLeftWindow,
   } = props;
   const [showHint, setShowHint] = useState(false);
+  const [originalImage, setOriginalImage] = useState(false);
   const [hexCopiedIndex, hexSetCopiedIndex] = useState<number | null>(null);
 
   const handleCopy = async (textToCopy: string, index: number) => {
@@ -67,19 +69,42 @@ const RecreateSection = (props: RecreateSectionProps) => {
         <p className="text-white font-rb font-bold text-2xl opacity-75">
           RECREATE THIS PIECE
         </p>
-        <div className="bg-[#FFFFFF40] border-4 border-[#FFFFFF80] rounded-xl">
+        
+        <div className="bg-[#FFFFFF40] border-4 border-[#FFFFFF80] rounded-xl relative">
+          <button
+            className="absolute top-2 right-2 bg-white/25 px-3 py-1 text-sm rounded-md shadow-md z-10 m-2"
+            onClick={() => setOriginalImage(!originalImage)}
+          >
+            {originalImage ? "See solution" : "See original image"}
+            <Image
+                className="inline ml-2"
+                src="eye.svg"
+                alt="original"
+                height={20}
+                width={20}
+                priority
+              />
+          </button>
+
           <div
-            className={
-              "w-[" +
-              paintingWidth +
-              "px] h-[" +
-              paintingHeight +
-              "px] bg-black m-2"
-            }
+            className={`relative w-[${paintingWidth}px] h-[${paintingHeight}px] bg-black m-2`}
           >
             {painting}
+
+            {originalImage && (
+              <Image
+                className="absolute top-0 left-0 w-full h-full object-cover"
+                src={props.svg_name}
+                alt="original"
+                height={50}
+                width={50}
+                priority
+              />
+            )}
           </div>
         </div>
+
+
         <div className="flex flex-col gap-2">
           <p className="text-white font-rb font-bold text-lg opacity-75 text-center max-w-[320px]">
             {'"' + title + '"'}
