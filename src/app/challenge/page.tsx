@@ -181,6 +181,8 @@ const ChallengeContent = () => {
               artist={current_level.artist}
               painting={current_level.solution}
               colors={current_level.colors}
+              hint={current_level.hint}
+              description={current_level.description}
               svg_name={current_level.svg_name}
               toggleLeftWindow={toggleLeftWindow}
               infoURL={current_level.infolink}
