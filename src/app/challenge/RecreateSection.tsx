@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { ReactNode, useState } from "react";
 import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
@@ -9,11 +9,12 @@ interface RecreateSectionProps {
   painting: ReactNode;
   title: string;
   artist: string;
+  colors: string[];
 }
 
-
 const RecreateSection = (props: RecreateSectionProps) => {
-  const { paintingWidth, paintingHeight, title, artist, painting } = props;
+  const { paintingWidth, paintingHeight, title, artist, painting, colors } =
+    props;
   const [showHint, setShowHint] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
@@ -22,56 +23,65 @@ const RecreateSection = (props: RecreateSectionProps) => {
       {/* Header Bar */}
       <div className="w-full flex flex-row justify-between items-center">
         <div className="flex flex-row gap-3 items-center">
-        <div className="relative inline-block text-left">
-      {/* Hamburger Icon Button */}
-      <button
-        onClick={() => setMenuIsOpen(!menuIsOpen)}
-        className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-[#5D8AA1] text-sm font-medium text-[#D7E1E8] hover:bg-[#D7E1E8] hover:text-[#5D8AA1] focus:outline-none"
-      >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {menuIsOpen ? (
-            // X icon when menu is open
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          ) : (
-            // Hamburger icon when menu is closed
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          )}
-        </svg>
-      </button>
+          <div className="relative inline-block text-left">
+            {/* Hamburger Icon Button */}
+            <button
+              onClick={() => setMenuIsOpen(!menuIsOpen)}
+              className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-[#5D8AA1] text-sm font-medium text-[#D7E1E8] hover:bg-[#D7E1E8] hover:text-[#5D8AA1] focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {menuIsOpen ? (
+                  // X icon when menu is open
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  // Hamburger icon when menu is closed
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
 
-      {/* Dropdown Menu */}
-      {menuIsOpen && (
-        <div className="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-[#D7E1E8] text-[#5D8AA1] z-10">
-          <div className="py-1">
-            <a href="#" className="block px-4 py-3 text-med text-gray-700 hover:px-4 font-blinker hover:font-bold">
-              Level 1
-            </a>
-            <a href="#" className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold">
-              Level 2
-            </a>
-            <a href="#" className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold">
-              Level 3
-            </a>
+            {/* Dropdown Menu */}
+            {menuIsOpen && (
+              <div className="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-[#D7E1E8] text-[#5D8AA1] z-10">
+                <div className="py-1">
+                  <a
+                    href="#"
+                    className="block px-4 py-3 text-med text-gray-700 hover:px-4 font-blinker hover:font-bold"
+                  >
+                    Level 1
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
+                  >
+                    Level 2
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-3 text-med text-gray-700 font-blinker hover:font-bold"
+                  >
+                    Level 3
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      )}
-    </div>
           <p className="text-white font-rb font-semibold text-lg opacity-75">
             LEVELS
           </p>
@@ -113,10 +123,20 @@ const RecreateSection = (props: RecreateSectionProps) => {
         </div>
 
         {/* Hex code section */}
-        <div className="grid grid-cols-3 w-[320px] justify-items-center">
-          <div className="w-12 h-6 bg-white" />
-          <div className="w-12 h-6 bg-white" />
-          <div className="w-12 h-6 bg-white" />
+        <div className="grid grid-cols-3 w-[320px] justify-items-center gap-2">
+          {colors.map((c, i) => {
+            return (
+              <div
+                key={i}
+                className="w-full bg-[#ffffff60] rounded-md p-1 flex flex-row gap-1 justify-center items-center"
+              >
+                <div className={`w-[18px] h-[18px] bg-[${c}] rounded-sm`} />
+                {/* <div className={`w-[18px] h-[18px] bg-[#02007F] rounded-sm`} /> */}
+
+                <p className="text-[#333333] font-rb font-semibold">{c}</p>
+              </div>
+            );
+          })}
         </div>
 
         <p className="text-white font-rb font-bold text-sm opacity-75 text-left max-w-[320px]">
@@ -131,9 +151,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
         <div className="relative">
           {showHint && (
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-[#CBCDFE] text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
-              <div className="font-bold">
-                Hint for You
-              </div>
+              <div className="font-bold">Hint for You</div>
               {levels[0].hint}
             </div>
           )}

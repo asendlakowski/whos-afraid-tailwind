@@ -13,7 +13,9 @@ const YourCodeSection = (props: YourCodeSectionProps) => {
       <p className="text-primary-blue font-rb font-bold text-2xl text-center">
         YOUR CODE OUTPUT
       </p>
-      {frame}
+      <div className="rounded-xl border-4 border-solid border-[#CBCDFE]">
+        {frame}
+      </div>
       <button
         onClick={() => {props.onSubmitClicked()}}
         className="flex flex-row justify-center items-center gap-2 bg-primary-blue py-2 px-4 rounded-full border drop-shadow-xl"
