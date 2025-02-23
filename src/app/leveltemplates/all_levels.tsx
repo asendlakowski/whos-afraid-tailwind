@@ -65,6 +65,7 @@ export const level2: level_name = {
   funfact:
     'Piet Mondrian\'s "Composition" works are a hallmark of his Neoplasticism style, where he used only primary colors, black, white, and grey arranged in a strict grid of vertical and horizontal lines. He believed that these simplified forms could reveal the universal order and balance of the cosmos, a revolutionary idea that continues to influence modern art and design',
   hint: "In our solution, we use row-span-2 to make elements take up a span of two rows instead of just one.",
+
   colors: ["#dee1e8", "#b6262b", "#203385", "#d9a948"],
   w: 300,
   h: 300,
