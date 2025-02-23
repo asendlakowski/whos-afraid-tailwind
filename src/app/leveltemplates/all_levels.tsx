@@ -110,4 +110,41 @@ export const level4: level_name = {
   h: 300,
 };
 
-export const levels: level_name[] = [level1, level2, level3, level4];
+export const level5: level_name = {
+  title: "Composition",
+  artist: "Piet Mondrian",
+  start: "",
+  solution: (
+    <div className="w-[300] h-[300] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
+      <div className="bg-[#b6262b]" />
+      <div className="bg-[#dee1e8]" />
+      <div className="bg-[#dee1e8]" />
+      <div className="bg-black grid grid-cols-[6fr_3fr_0.5fr] grid-rows-[4fr_5fr_0.5fr] gap-2">
+        <div className="bg-[#dee1e8] col-span-2 row-span-2" />
+        <div className="bg-[#203385]" />
+        <div className="bg-[#dee1e8] row-span-2" />
+        <div className="bg-[#d9a948]" />
+        <div className="bg-black" />
+      </div>
+    </div>
+  ),
+  solution_str: `<div class="w-[300px] h-[300px] bg-black grid grid-cols-[3fr_7fr] grid-rows-[3fr_7fr] border border-black gap-2">
+    <div class="bg-[#b6262b]"></div>
+    <div class="bg-[#dee1e8]"></div>
+    <div class="bg-[#dee1e8]"></div>
+    <div class="bg-black grid grid-cols-[6fr_3fr_0.5fr] grid-rows-[4fr_5fr_0.5fr] gap-2">
+        <div class="bg-[#dee1e8] col-span-2 row-span-2"></div>
+        <div class="bg-[#203385]"></div>
+        <div class="bg-[#dee1e8] row-span-2"></div>
+        <div class="bg-[#d9a948]"></div>
+        <div class="bg-black"></div>
+    </div>
+</div>`,
+  svg_name: "/paintings/mondrian.svg",
+  hint: "string",
+  colors: ["#dee1e8", "#b6262b", "#203385", "#d9a948"],
+  w: 300,
+  h: 300,
+};
+
+export const levels: level_name[] = [level1, level2, level3, level4, level5];
