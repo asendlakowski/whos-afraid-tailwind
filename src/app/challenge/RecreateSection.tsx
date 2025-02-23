@@ -2,9 +2,7 @@
 import React, { ReactNode, useState } from "react";
 import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
-// import Link from "next/link";
 import Hamburger from "./Hamburger";
-import Link from "next/link";
 
 interface RecreateSectionProps {
   paintingWidth: number;
@@ -148,11 +146,11 @@ const RecreateSection = (props: RecreateSectionProps) => {
                   />
                   <span>
                     {hexCopiedIndex === i ? (
-                      <p className="font-blinker text-[#333333] font-rb font-semibold">
+                      <p className="font-blinker text-[#333333] font-semibold">
                         Copied!
                       </p>
                     ) : (
-                      <p className="font-blinker text-[#333333] font-rb font-semibold">
+                      <p className="font-blinker text-[#333333] font-semibold">
                         {c}
                       </p>
                     )}
