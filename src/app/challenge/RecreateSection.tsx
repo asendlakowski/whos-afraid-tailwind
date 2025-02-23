@@ -3,6 +3,7 @@ import React, { ReactNode, useState } from "react";
 import { levels } from "../leveltemplates/all_levels";
 import Image from "next/image";
 
+
 interface RecreateSectionProps {
   paintingWidth: number;
   paintingHeight: number;
@@ -17,7 +18,19 @@ const RecreateSection = (props: RecreateSectionProps) => {
     props;
   const [showHint, setShowHint] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [hexCopiedIndex, hexSetCopiedIndex] = useState<number | null>(null);
 
+  const handleCopy = async (textToCopy: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      hexSetCopiedIndex(index);
+      // display copied! for 2 sec
+      setTimeout(() => hexSetCopiedIndex(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
+  
   return (
     <div className="flex flex-col justify-between items-center my-2">
       {/* Header Bar */}
@@ -126,15 +139,23 @@ const RecreateSection = (props: RecreateSectionProps) => {
         <div className="grid grid-cols-3 w-[320px] justify-items-center gap-2">
           {colors.map((c, i) => {
             return (
+              <button key={i} onClick={() => handleCopy(c, i)}>
               <div
                 key={i}
                 className="w-full bg-[#ffffff60] rounded-md p-1 flex flex-row gap-1 justify-center items-center"
               >
-                <div className="w-[18px] h-[18px] bg-[${c}] rounded-sm" style={{ backgroundColor: c }} />
-                {/* <div className={`w-[18px] h-[18px] bg-[#02007F] rounded-sm`} /> */}
-
-                <p className="text-[#333333] font-rb font-semibold">{c}</p>
+                <span
+                  className="w-[18px] h-[18px] rounded-sm"
+                  style={{ backgroundColor: c }} // Use inline style to apply dynamic color
+                />
+                <span>
+                  {hexCopiedIndex === i ? <p className="font-blinker">Copied!</p> : <p className="font-blinker text-[#333333] font-rb font-semibold">{c}</p>}
+                </span>
+                {/* <div className="w-[18px] h-[18px] bg-[${c}] rounded-sm" style={{ backgroundColor: c }} /> */}
+                {/* <p className="text-[#333333] font-rb font-semibold">{c}</p> */}
               </div>
+              {/* {hexIsCopied ? "Copied!" : "Copy Text"} */}
+              </button>
             );
           })}
         </div>
