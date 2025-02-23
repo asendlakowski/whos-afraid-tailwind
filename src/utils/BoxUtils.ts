@@ -1,5 +1,4 @@
 import { Box } from "@/utils/BoxType";
-import { ClientPageRoot } from "next/dist/client/components/client-page";
 
 const get_box_data = (html_elem: Element, canvas: Element) => {
   const computed_styles = window.getComputedStyle(html_elem);

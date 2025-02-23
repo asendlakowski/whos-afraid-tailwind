@@ -45,9 +45,9 @@ const RecreateSection = (props: RecreateSectionProps) => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center my-2">
+    <div className="flex flex-col justify-between items-center my-2 overflow-y-scroll">
       {/* Header Bar */}
-      <div className="w-full flex flex-row justify-between items-center">
+      <div className="w-full flex flex-row justify-between items-center sticky top-0">
         <div className="flex flex-row gap-3 items-center">
           <div className="relative inline-block text-left">
             <Hamburger />
@@ -149,7 +149,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
           })}
         </div>
 
-        <p className="text-white font-rb font-bold text-sm opacity-75 text-left max-w-[320px]">
+        <p className="text-white font-rb font-bold text-sm opacity-75 text-left max-w-[320px] my-4">
           This is a great hint that will give you some guidance on how to solve
           this problem using cool tailwind methods yippeeeeeeeeeee
         </p>
