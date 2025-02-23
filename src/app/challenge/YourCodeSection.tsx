@@ -11,7 +11,7 @@ interface YourCodeSectionProps {
 const YourCodeSection = (props: YourCodeSectionProps) => {
   const { frame, funfact } = props;
   return (
-    <div className="bg-[#FFFFFFC0] w-full h-full rounded-xl flex flex-col justify-between items-center gap-4 p-6">
+    <div className="bg-[#FFFFFFC0] w-full h-full rounded-xl flex flex-col justify-between items-center gap-4 p-6 overflow-y-scroll no-scrollbar">
       <p className="text-primary-blue font-rb font-bold text-2xl text-center">
         YOUR CODE OUTPUT
       </p>
