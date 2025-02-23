@@ -49,7 +49,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
             {/* Hamburger Icon Button */}
             <button
               onClick={() => setMenuIsOpen(!menuIsOpen)}
-              className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-[#5D8AA1] text-sm font-medium text-[#D7E1E8] hover:bg-[#D7E1E8] hover:text-[#5D8AA1] focus:outline-none"
+              className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-secondary-blue text-sm font-medium text-[#D7E1E8] hover:bg-[#D7E1E8] hover:text-secondary-blue focus:outline-none"
             >
               <svg
                 className="w-6 h-6"
@@ -80,7 +80,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
 
             {/* Dropdown Menu */}
             {menuIsOpen && (
-              <div className="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-[#D7E1E8] text-[#5D8AA1] z-10">
+              <div className="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-[#D7E1E8] text-secondary-blue z-10">
                 <div className="py-1">
                   <Link
                     href={{
@@ -194,7 +194,7 @@ const RecreateSection = (props: RecreateSectionProps) => {
         <Image src="map.svg" alt="fun fact" width={38} height={38} />
         <div className="relative">
           {showHint && (
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-[#CBCDFE] text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-primary-purple text-[#3239FB] border-2 border-white-0 rounded-md shadow-lg">
               <div className="font-bold">Hint for You</div>
               {levels[0].hint}
             </div>
